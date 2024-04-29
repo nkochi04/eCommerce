@@ -1,0 +1,30 @@
+USER:
+	ID: UUID, Username: STRING, Password: STRING, Firstname: STRING, Lastname: STRING, Department_ID: UUID
+
+DEPARTMENT:
+	ID: UUID, Name: STRING, Payment_Adress: STRING
+
+
+PRODUCT: 
+	ID: UUID, Seller_ID: UUID, Name: STRING, Price: FLOAT, PiecesAvailable: INTEGER
+
+PRODUCT_SERIALNUMBER:
+	Serial_Number: INT, Product_ID: UUID, Sold: BOOL
+
+PRODUCTGROUP:
+	ID: UUID, Type: STRING 
+
+	
+SELLER:
+	ID: UUID, Adresse_ID: UUID, Name: STRING, Email: STRING
+	
+ADDRESS: 
+	ID: UUID, Number: INTEGER, Road: STRING, Postalcode
+
+Postalcode: 
+	ID: UUID, Country: STRING
+	
+	
+	
+	
+

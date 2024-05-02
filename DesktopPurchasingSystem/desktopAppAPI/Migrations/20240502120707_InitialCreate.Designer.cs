@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DesktopAppAPI.Migrations
 {
     [DbContext(typeof(desktopAppDbContext))]
-    [Migration("20240502084937_InitialCreate")]
+    [Migration("20240502120707_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -65,7 +65,7 @@ namespace DesktopAppAPI.Migrations
                     b.ToTable("Departments");
                 });
 
-            modelBuilder.Entity("DesktopAppAPI.Models.ProductDescriptionModel", b =>
+            modelBuilder.Entity("DesktopAppAPI.Models.ProductModel", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
@@ -86,10 +86,10 @@ namespace DesktopAppAPI.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("ProductDescriptions");
+                    b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("DesktopAppAPI.Models.ProductModel", b =>
+            modelBuilder.Entity("DesktopAppAPI.Models.ProductSerialNumberModel", b =>
                 {
                     b.Property<int>("Serial_Number")
                         .ValueGeneratedOnAdd()
@@ -103,7 +103,7 @@ namespace DesktopAppAPI.Migrations
 
                     b.HasKey("Serial_Number");
 
-                    b.ToTable("ProductModel");
+                    b.ToTable("ProductSerialNumberModel");
                 });
 
             modelBuilder.Entity("DesktopAppAPI.Models.SellerModel", b =>

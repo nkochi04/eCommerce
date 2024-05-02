@@ -40,7 +40,7 @@ namespace DesktopAppAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProductDescriptions",
+                name: "Products",
                 columns: table => new
                 {
                     ID = table.Column<Guid>(type: "TEXT", nullable: false),
@@ -51,11 +51,11 @@ namespace DesktopAppAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductDescriptions", x => x.ID);
+                    table.PrimaryKey("PK_Products", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProductModel",
+                name: "ProductSerialNumberModel",
                 columns: table => new
                 {
                     Serial_Number = table.Column<int>(type: "INTEGER", nullable: false)
@@ -65,7 +65,7 @@ namespace DesktopAppAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductModel", x => x.Serial_Number);
+                    table.PrimaryKey("PK_ProductSerialNumberModel", x => x.Serial_Number);
                 });
 
             migrationBuilder.CreateTable(
@@ -123,10 +123,10 @@ namespace DesktopAppAPI.Migrations
                 name: "Departments");
 
             migrationBuilder.DropTable(
-                name: "ProductDescriptions");
+                name: "Products");
 
             migrationBuilder.DropTable(
-                name: "ProductModel");
+                name: "ProductSerialNumberModel");
 
             migrationBuilder.DropTable(
                 name: "Sellers");

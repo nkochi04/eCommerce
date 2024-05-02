@@ -1,5 +1,7 @@
 ﻿using DesktopAppAPI.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace DesktopAppAPI
 {
@@ -10,48 +12,68 @@ namespace DesktopAppAPI
         {
             //empties all tables
             ClearAllTables(_db);
+            _db.SaveChanges();
 
             //init users
             if (!_db.Users.Any())
             {
                 InitializeUsers(_db);
+                _db.SaveChanges();
             }
 
             //init suppliers
             if (!_db.Suppliers.Any())
             {
                 InitializeSuppliers(_db);
+                _db.SaveChanges();
             }
 
             //init sellers
             if (!_db.Sellers.Any())
             {
                 InitializeSellers(_db);
+                _db.SaveChanges();
             }
 
             //init addresses
             if (!_db.Addresses.Any())
             {
                 InitializeAddresses(_db);
+                _db.SaveChanges();
             }
 
             //init departments
             if (!_db.Departments.Any())
             {
                 InitializeDepartments(_db);
+                _db.SaveChanges();
+            }
+
+            //init products
+            if (!_db.Products.Any())
+            {
+                InitializeProducts(_db);
+                _db.SaveChanges();
+            }
+
+            //init product_serialnumbers
+            if (!_db.Product_SerialNumbers.Any())
+            {
+                InitializeProductSerialNumber(_db);
+                _db.SaveChanges();
             }
 
             _db.SaveChanges();
         }
-        
+
         private static void ClearAllTables(desktopAppDbContext _db)
         {
             _db.Addresses.ExecuteDelete();
             _db.Departments.ExecuteDelete();
             _db.Orders.ExecuteDelete();
             _db.OrderXProducts.ExecuteDelete();
-            _db.ProductDescriptions.ExecuteDelete();
             _db.Products.ExecuteDelete();
+            _db.Product_SerialNumbers.ExecuteDelete();
             _db.Sellers.ExecuteDelete();
             _db.Suppliers.ExecuteDelete();
             _db.Users.ExecuteDelete();
@@ -88,21 +110,21 @@ namespace DesktopAppAPI
                 new SellerModel
                 {
                     ID = Guid.NewGuid(),
-                    Adress_ID = Guid.Parse("FECF56AB-56C0-42E5-9036-00A74B2F7C73"),
+                    Adress_ID = Guid.NewGuid(),
                     Name = "Amazon",
                     Email = "seller1@example.com"
                 },
                 new SellerModel
                 {
                     ID = Guid.NewGuid(),
-                    Adress_ID = Guid.Parse("7D5C678E-BBFC-4542-826B-F9443E332783"),
+                    Adress_ID = Guid.NewGuid(),
                     Name = "Mediamarkt",
                     Email = "seller2@example.com"
                 },
                 new SellerModel
                 {
                     ID = Guid.NewGuid(),
-                    Adress_ID = Guid.Parse("1E3FC11B-5F08-4FD2-BA16-C84276D5550F"),
+                    Adress_ID = Guid.NewGuid(),
                     Name = "Siemens",
                     Email = "seller3@example.com"
                 }
@@ -110,18 +132,19 @@ namespace DesktopAppAPI
         }
         private static void InitializeAddresses(desktopAppDbContext _db)
         {
+            List<SellerModel> seller = _db.Sellers.ToList();
             _db.Addresses.AddRange(
                 new AddressModel
                 {
-                    ID = Guid.Parse("FECF56AB-56C0-42E5-9036-00A74B2F7C73"),
+                    ID = seller[0].Adress_ID,
                     Number = 123,
                     Road = "Main Street",
                     Postalcode = "12345",
-                    Country= "Usebkistan"
+                    Country = "Usebkistan"
                 },
                 new AddressModel
                 {
-                    ID = Guid.Parse("7D5C678E-BBFC-4542-826B-F9443E332783"),
+                    ID = seller[1].Adress_ID,
                     Number = 456,
                     Road = "Second Avenue",
                     Postalcode = "67890",
@@ -129,7 +152,7 @@ namespace DesktopAppAPI
                 },
                 new AddressModel
                 {
-                    ID = Guid.Parse("1E3FC11B-5F08-4FD2-BA16-C84276D5550F"),
+                    ID = seller[2].Adress_ID,
                     Number = 789,
                     Road = "Third Boulevard",
                     Postalcode = "11223",
@@ -177,7 +200,66 @@ namespace DesktopAppAPI
                 new UserModel { ID = Guid.NewGuid(), Username = "User20", Password = "Password20", Firstname = "Firstname20", Lastname = "Lastname20", Department_ID = Guid.Parse("0DE7ED39-9CA3-414D-A933-C8DBDCE33E92") }
             );
         }
-        
+
+
+        private static void InitializeProducts(desktopAppDbContext _db)
+        {
+            List<string> products = new List<string> { "Computer", "Printer", "Telephone", "Fax machine", "Scanner", "Copier", "Monitor", "Keyboard", "Mouse", "Laptop", "Projector", "Power supply", "Iron for shirts", "Floor lamp", "Desk lamp", "Paper shredder", "Radio alarm clock", "USB hub", "Webcam", "Headset", "Speakers", "Mobile phone charger", "Tablet", "Smartboard", "Remote control", "Batteries", "Power cable", "Magnetic whiteboard", "Stapler", "Staple remover", "Letter scale", "Space heater", "Humidifier", "Iron for documents", "Paper shredder", "HDMI cable", "VGA cable", "DVI cable", "DisplayPort cable", "Ethernet cable", "USB cable", "Replacement ink cartridges", "Replacement toner cartridges", "Office chair with massage function", "Footrest", "Laptop stand", "Desk fan", "Water dispenser", "Coffee machine" };
+
+            List<SellerModel> seller = _db.Sellers.ToList();
+
+            //GetImages(products);
+
+            
+
+            for (int i = 0; i < products.Count; i++)
+            {
+                _db.Products.Add(
+                    new ProductModel
+                    {
+                        ID = Guid.NewGuid(),
+                        Seller_ID = seller[i % 3].ID,
+                        Name = products[i],
+                        PiecesAvailable = 50,
+                        Price = 35
+                    }
+                );
+            }
+
+        }
+
+        //private async static void GetImages(List<string> products)
+        //{
+        //    HttpClient client = new HttpClient();
+        //    for (int i = 0; i < 50; i++)
+        //    {
+        //        string url = $"https://source.unsplash.com/random?product&sig={products[i]}";
+        //        HttpResponseMessage response = await client.GetAsync(url);
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            byte[] imageBytes = await response.Content.ReadAsByteArrayAsync();
+        //            await File.WriteAllBytesAsync($"Images/image{i}.jpg", imageBytes);
+        //            // Save imageBytes to a file or use as needed
+        //        }
+        //    }
+        //}
+
+        private static void InitializeProductSerialNumber(desktopAppDbContext _db)
+        {
+            Random random = new Random();
+            int randomNumber;
+            foreach (var product in _db.Products)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    randomNumber = random.Next(100000000, 1000000000);
+                    _db.Add(new ProductSerialNumberModel { Product_ID = product.ID, Serial_Number = randomNumber, Sold = false });
+                }
+            }
+
+        }
+
+
 
     }
 }

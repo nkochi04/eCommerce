@@ -18,6 +18,13 @@ namespace DesktopAppAPI.Controllers
             return await _db.Users.ToListAsync();
         }
 
+        // GET: api/User
+        [HttpGet("getPieces")]
+        public async Task<ActionResult<IEnumerable<ProductModel>>> GetPieces()
+        {
+            return await _db.Products.ToListAsync();
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<UserModel>> GetUser(Guid id)
         {

@@ -40,6 +40,46 @@ namespace DesktopAppAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    ID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    User_ID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Supplier_ID = table.Column<Guid>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderXProducts",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Order_ID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Product_ID = table.Column<Guid>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderXProducts", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Product_SerialNumbers",
+                columns: table => new
+                {
+                    Serial_Number = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Product_ID = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Sold = table.Column<bool>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Product_SerialNumbers", x => x.Serial_Number);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -52,20 +92,6 @@ namespace DesktopAppAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ProductSerialNumberModel",
-                columns: table => new
-                {
-                    Serial_Number = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Product_ID = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Sold = table.Column<bool>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProductSerialNumberModel", x => x.Serial_Number);
                 });
 
             migrationBuilder.CreateTable(
@@ -123,10 +149,16 @@ namespace DesktopAppAPI.Migrations
                 name: "Departments");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "ProductSerialNumberModel");
+                name: "OrderXProducts");
+
+            migrationBuilder.DropTable(
+                name: "Product_SerialNumbers");
+
+            migrationBuilder.DropTable(
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Sellers");

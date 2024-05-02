@@ -2,7 +2,7 @@
 
 namespace DesktopAppAPI.Models
 {
-    public class ProductSerialNumberModel
+    public class PieceModel
     {
         [Key]
         public int Serial_Number { get; set; }

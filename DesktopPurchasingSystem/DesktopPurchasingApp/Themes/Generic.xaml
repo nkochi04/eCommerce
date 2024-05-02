@@ -11,26 +11,26 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:NavButton}">
-                    <Border x:Name="back" CornerRadius="8" Padding="{TemplateBinding Padding}" Background="Transparent" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                        <Grid>
+                    <Border x:Name="back" CornerRadius="8" Padding="{TemplateBinding Padding}" Background="#D4CCCF" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid x:Name="grid" Background="#D4CCCF">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="150"/>
                             </Grid.ColumnDefinitions>
-                            <Path x:Name="icon" Height="24" Width="24" Stretch="Uniform" Fill="#7b8792" Data="{TemplateBinding Icon}"/>
-                            <TextBlock x:Name="text" Grid.Column="1" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#7b8792" FontSize="14" Text="{TemplateBinding Text}"/>
+                            <Path x:Name="icon" Height="24" Width="24" Stretch="Uniform" Fill="#262225" Data="{TemplateBinding Icon}"/>
+                            <TextBlock x:Name="text" Grid.Column="1" Margin="15,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#262225" FontSize="20" FontStretch="SemiExpanded" FontFamily="/DesktopPurchasingApp;component/UbuntuSans.ttf#Ubuntu Sans"   Text="{TemplateBinding Text}"/>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
 
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" TargetName="back" Value="#d0ebff"/>
-                            <Setter Property="Fill" TargetName="icon" Value="#2a84f1"/>
+                            <Setter Property="Background" TargetName="back" Value="#E9EBE8"/>
+                            <Setter Property="Background" TargetName="grid" Value="#E9EBE8"/>
                         </Trigger>
 
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" TargetName="back" Value="#d0ebff"/>
-                            <Setter Property="Fill" TargetName="icon" Value="#2a84f1"/>
+                            <Setter Property="Background" TargetName="back" Value="#E9EBE8"/>
+                            <Setter Property="Background" TargetName="grid" Value="#E9EBE8"/>
                         </Trigger>
 
                     </ControlTemplate.Triggers>

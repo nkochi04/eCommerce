@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DesktopAppAPI.Migrations
 {
     [DbContext(typeof(desktopAppDbContext))]
-    [Migration("20240502120707_InitialCreate")]
+    [Migration("20240502180202_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -65,6 +65,57 @@ namespace DesktopAppAPI.Migrations
                     b.ToTable("Departments");
                 });
 
+            modelBuilder.Entity("DesktopAppAPI.Models.OrderModel", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("Supplier_ID")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("User_ID")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("DesktopAppAPI.Models.OrderProductModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("Order_ID")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("Product_ID")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OrderXProducts");
+                });
+
+            modelBuilder.Entity("DesktopAppAPI.Models.PieceModel", b =>
+                {
+                    b.Property<int>("Serial_Number")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid>("Product_ID")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Sold")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Serial_Number");
+
+                    b.ToTable("Product_SerialNumbers");
+                });
+
             modelBuilder.Entity("DesktopAppAPI.Models.ProductModel", b =>
                 {
                     b.Property<Guid>("ID")
@@ -87,23 +138,6 @@ namespace DesktopAppAPI.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("DesktopAppAPI.Models.ProductSerialNumberModel", b =>
-                {
-                    b.Property<int>("Serial_Number")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<Guid>("Product_ID")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("Sold")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Serial_Number");
-
-                    b.ToTable("ProductSerialNumberModel");
                 });
 
             modelBuilder.Entity("DesktopAppAPI.Models.SellerModel", b =>

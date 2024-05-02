@@ -23,6 +23,10 @@ namespace DesktopAppAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("Number")
                         .HasColumnType("INTEGER");
 
@@ -56,21 +60,6 @@ namespace DesktopAppAPI.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Departments");
-                });
-
-            modelBuilder.Entity("DesktopAppAPI.Models.PostalcodeModel", b =>
-                {
-                    b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Postalcodes");
                 });
 
             modelBuilder.Entity("DesktopAppAPI.Models.ProductDescriptionModel", b =>
@@ -111,7 +100,7 @@ namespace DesktopAppAPI.Migrations
 
                     b.HasKey("Serial_Number");
 
-                    b.ToTable("Products");
+                    b.ToTable("ProductModel");
                 });
 
             modelBuilder.Entity("DesktopAppAPI.Models.SellerModel", b =>
@@ -149,8 +138,8 @@ namespace DesktopAppAPI.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Price_Per_Delivery")
-                        .HasColumnType("INTEGER");
+                    b.Property<float>("Price_Per_Delivery")
+                        .HasColumnType("REAL");
 
                     b.HasKey("ID");
 

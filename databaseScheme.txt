@@ -5,6 +5,17 @@ DEPARTMENT:
 	ID: UUID, Name: STRING, Payment_Adress: STRING
 
 
+ORDER:
+	ID: UUID, User_ID, Supplier_ID, 
+
+SUPPLIER:
+	ID:UUID, Name: String, Delivery_Time_In_Days: INTEGER, Price_Per_Delivery: Float 
+
+ORDERXPRODUCT:
+	Order_ID: UUID, Product_ID: UUID
+
+
+
 PRODUCT: 
 	ID: UUID, Seller_ID: UUID, Name: STRING, Price: FLOAT, PiecesAvailable: INTEGER
 
@@ -14,15 +25,14 @@ PRODUCT_SERIALNUMBER:
 PRODUCTGROUP:
 	ID: UUID, Type: STRING 
 
+
 	
 SELLER:
 	ID: UUID, Adresse_ID: UUID, Name: STRING, Email: STRING
 	
 ADDRESS: 
-	ID: UUID, Number: INTEGER, Road: STRING, Postalcode
+	ID: UUID, Number: INTEGER, Road: STRING, Postalcode, Country: STRING
 
-Postalcode: 
-	ID: UUID, Country: STRING
 	
 	
 	

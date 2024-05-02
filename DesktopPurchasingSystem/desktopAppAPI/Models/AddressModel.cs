@@ -9,5 +9,6 @@ namespace DesktopAppAPI.Models
         public int Number { get; set; }
         public string Road { get; set; } = string.Empty;
         public string Postalcode { get; set; } = string.Empty;
+        public string Country { get; set; } = string.Empty;
     }
 }

@@ -18,7 +18,8 @@ namespace DesktopAppAPI.Migrations
                     ID = table.Column<Guid>(type: "TEXT", nullable: false),
                     Number = table.Column<int>(type: "INTEGER", nullable: false),
                     Road = table.Column<string>(type: "TEXT", nullable: false),
-                    Postalcode = table.Column<string>(type: "TEXT", nullable: false)
+                    Postalcode = table.Column<string>(type: "TEXT", nullable: false),
+                    Country = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -39,18 +40,6 @@ namespace DesktopAppAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Postalcodes",
-                columns: table => new
-                {
-                    ID = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Country = table.Column<string>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Postalcodes", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ProductDescriptions",
                 columns: table => new
                 {
@@ -66,7 +55,7 @@ namespace DesktopAppAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Products",
+                name: "ProductModel",
                 columns: table => new
                 {
                     Serial_Number = table.Column<int>(type: "INTEGER", nullable: false)
@@ -76,7 +65,7 @@ namespace DesktopAppAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.Serial_Number);
+                    table.PrimaryKey("PK_ProductModel", x => x.Serial_Number);
                 });
 
             migrationBuilder.CreateTable(
@@ -100,7 +89,7 @@ namespace DesktopAppAPI.Migrations
                     ID = table.Column<Guid>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Delivery_Period_In_Days = table.Column<int>(type: "INTEGER", nullable: false),
-                    Price_Per_Delivery = table.Column<int>(type: "INTEGER", nullable: false)
+                    Price_Per_Delivery = table.Column<float>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -134,13 +123,10 @@ namespace DesktopAppAPI.Migrations
                 name: "Departments");
 
             migrationBuilder.DropTable(
-                name: "Postalcodes");
-
-            migrationBuilder.DropTable(
                 name: "ProductDescriptions");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "ProductModel");
 
             migrationBuilder.DropTable(
                 name: "Sellers");

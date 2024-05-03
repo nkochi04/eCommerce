@@ -28,10 +28,10 @@ namespace DesktopPurchasingApp
 
             //Send dto to server
             HttpClient client = new();
-            client.BaseAddress = new Uri("http://localhost:5000/api/Authenticate");
+            client.BaseAddress = new Uri("http://localhost:5000/");
             var json = JsonConvert.SerializeObject(loginModel);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("api/login", content);
+            var response = await client.PostAsync("api/Authenticate", content);
 
             //Check response
             if (response.IsSuccessStatusCode)

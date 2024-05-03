@@ -10,19 +10,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DesktopPurchasingApp.Pages
+namespace WpfApp
 {
     /// <summary>
-    /// Interaction logic for Page4.xaml
+    /// Interaction logic for Home.xaml
     /// </summary>
-    public partial class Page4 : Page
+    public partial class Home : Window
     {
-        public Page4()
+        public Home()
         {
             InitializeComponent();
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void GoToSC(object sender, RoutedEventArgs e)
+        {
+            navframe.Navigate(new Uri("Views/ShoppingCart.xaml", UriKind.Relative));
         }
     }
 }

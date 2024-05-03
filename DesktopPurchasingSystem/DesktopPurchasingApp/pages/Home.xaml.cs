@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DesktopPurchasingApp.Pages
+namespace DesktopPurchasingApp.pages
 {
     /// <summary>
-    /// Interaction logic for Page1.xaml
+    /// Interaction logic for Home.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class Home : Page
     {
-        public Page1()
+        public Home()
         {
             InitializeComponent();
         }

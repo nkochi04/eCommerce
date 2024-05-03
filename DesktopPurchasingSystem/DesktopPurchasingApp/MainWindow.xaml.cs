@@ -8,8 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using DesktopPurchasingApp.OwnControls;
-using DesktopPurchasingApp.UserControls;
+using DesktopPurchasingApp.Models;
 
 namespace DesktopPurchasingApp
 {
@@ -18,39 +17,19 @@ namespace DesktopPurchasingApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(UserModel user)
         {
             InitializeComponent();
-            InitEvents();
-            sidebar.SelectedItem = homeButton;
-        }
 
-        private void InitEvents()
-        {
-            header.CloseClick += (s, e) => this.Close();
-            header.MinimizeClick += (s, e) => this.WindowState = WindowState.Minimized;
-            header.MaximizeClick += (s, e) => this.WindowState = this.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
         }
-
-        private void sidebar_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var selected = sidebar.SelectedItem as NavButton;
-            navframe.Navigate(selected?.Navlink);
-        }
-
-        private void Minimize_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
-
-        private void Maximize_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = this.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
-        }
-
-        private void Close_Click(object sender, RoutedEventArgs e)
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void GoToSC(object sender, RoutedEventArgs e)
+        {
+            navframe.Navigate(new Uri("pages/Home.xaml", UriKind.Relative));
         }
     }
 }

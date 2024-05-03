@@ -182,7 +182,7 @@ namespace DesktopAppAPI
                 _db.Users.Add(new UserModel { ID = Guid.NewGuid(), Username = $"admin{i}", Password = "admin", Firstname = "admin", Lastname = "admin", Department_ID = department.ID });
                 i++;
             }
-            _db.Users.Add(new UserModel { ID = Guid.NewGuid(), Username = $"admin{i}", Password = "admin", Firstname = "admin", Lastname = "admin", Department_ID = _db.Departments.Where(x => x.Name == "Management").SingleOrDefault().ID });
+            _db.Users.Add(new UserModel { ID = Guid.NewGuid(), Username = $"nkochi", Password = "admin", Firstname = "admin", Lastname = "admin", Department_ID = _db.Departments.Where(x => x.Name == "Management").SingleOrDefault().ID });
         }
 
 

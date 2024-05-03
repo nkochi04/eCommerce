@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DesktopPurchasingApp.Pages
+namespace WpfApp.Views
 {
     /// <summary>
-    /// Interaction logic for Page3.xaml
+    /// Interaction logic for ShoppingCart.xaml
     /// </summary>
-    public partial class Page3 : Page
+    public partial class ShoppingCart : Page
     {
-        public Page3()
+        public ShoppingCart()
         {
             InitializeComponent();
         }

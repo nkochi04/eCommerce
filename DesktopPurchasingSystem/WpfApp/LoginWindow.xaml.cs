@@ -10,19 +10,27 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DesktopPurchasingApp.Pages
+namespace WpfApp
 {
     /// <summary>
-    /// Interaction logic for Page2.xaml
+    /// Interaction logic for LoginWindow.xaml
     /// </summary>
-    public partial class Page2 : Page
+    public partial class LoginWindow : Window
     {
-        public Page2()
+        public LoginWindow()
         {
             InitializeComponent();
+        }
+
+        private void Login(object sender, RoutedEventArgs e)
+        {
+            // Open the main window
+            Home home = new Home();
+            home.Show();
+            // Close the login window
+            this.Close();
         }
     }
 }

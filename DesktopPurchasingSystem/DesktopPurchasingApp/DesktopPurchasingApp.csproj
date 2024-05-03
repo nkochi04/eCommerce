@@ -9,11 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Fonts\UbuntuSans.ttf" />
+    <None Remove="images\dps_logo.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Fonts\UbuntuSans.ttf" />
+    <Content Include="images\dps_logo.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="5.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
 </Project>

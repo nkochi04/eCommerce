@@ -7,6 +7,10 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              >
+    
+    
+
+
     <materialDesign:Card Background="#E5E9EA" Margin="0 15 0 0" HorizontalAlignment="Center">
         <Grid >
             <Grid.ColumnDefinitions>

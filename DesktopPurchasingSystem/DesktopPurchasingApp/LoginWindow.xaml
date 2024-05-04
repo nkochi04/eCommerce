@@ -6,6 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:DesktopPurchasingApp"
         xmlns:vm="clr-namespace:DesktopPurchasingApp.ViewModels"
+        d:DataContext="{d:DesignInstance Type=vm:LoginViewModel}"
         mc:Ignorable="d"
         Title="Login" Height="760" Width="450"
         WindowStartupLocation="CenterScreen"
@@ -30,11 +31,11 @@
                     <RowDefinition Height="75"/>
                     <RowDefinition Height="75"/>
                 </Grid.RowDefinitions>
-                <TextBox   Height="50" Name="usernameBox" Margin="50,10,50,10"  materialDesign:HintAssist.Hint="Enter Username" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-                <PasswordBox Height="50" Grid.Row="1" Name="passwordBox" Margin="50,10,50,10" materialDesign:HintAssist.Hint="Enter Password"  BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}"/>
+                <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Height="50" Name="usernameBox" Margin="50,10,50,10"  materialDesign:HintAssist.Hint="Enter Username" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <PasswordBox Name="passwordBox" PasswordChanged="PasswordChanged" Height="50" Grid.Row="1" Margin="50,10,50,10" materialDesign:HintAssist.Hint="Enter Password"  BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}"/>
             </Grid>
             
-            <Button Margin="50" Width="150" Grid.Row="2" Content="Log in" Click="Login"/>
+            <Button Margin="50" Width="150" Grid.Row="2" Content="Log in" Command="{Binding LoginCommand}"/>
         </StackPanel>
     </materialDesign:Card>
 </Window>

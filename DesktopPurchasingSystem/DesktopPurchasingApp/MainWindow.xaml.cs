@@ -10,6 +10,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DesktopPurchasingApp.Models;
 using DesktopPurchasingApp.pages;
+using DesktopPurchasingApp.ViewModels;
 
 namespace DesktopPurchasingApp
 {
@@ -18,21 +19,25 @@ namespace DesktopPurchasingApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private UserModel user;
-        public MainWindow(UserModel user)
+        private MainViewModel ViewModel => (MainViewModel)DataContext;
+        private readonly UserModel? user;
+        public MainWindow(UserModel? user)
         {
             InitializeComponent();
+            DataContext = new MainViewModel();
             this.user = user;
-
         }
+
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void GoToSC(object sender, RoutedEventArgs e)
         {
-            navframe.Navigate(new Uri("Pages/Home.xaml", UriKind.Relative));
+            Home home = new(user);
+            navframe.Navigate(home);
+            
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
@@ -40,7 +45,16 @@ namespace DesktopPurchasingApp
 
             base.OnMouseLeftButtonDown(e);
             if (e.ChangedButton == MouseButton.Left)
-                this.DragMove();
+                DragMove();
+        }
+
+        private void Logout(object sender, RoutedEventArgs e)
+        {
+            LoginWindow loginWindow = new();
+            loginWindow.Show();
+
+            // Close the login window
+            Close();
         }
     }
 }

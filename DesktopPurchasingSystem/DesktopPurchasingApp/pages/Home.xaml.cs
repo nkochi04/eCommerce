@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DesktopPurchasingApp.Models;
+using DesktopPurchasingApp.ViewModels;
 
 namespace DesktopPurchasingApp.pages
 {
@@ -22,40 +23,11 @@ namespace DesktopPurchasingApp.pages
     /// </summary>
     public partial class Home : Page
     {
-        private UserModel user;
-        public Home()
+        private HomeViewModel ViewModel => (HomeViewModel) DataContext;
+        public Home(UserModel? user)
         {
             InitializeComponent();
-        }
-
-        public void Logout(object sender, RoutedEventArgs e)
-        {
-            // Close the main window
-            //this.Close();
-        }
-
-        public async void Email(object sender, RoutedEventArgs e)
-        {
-            var psi = new ProcessStartInfo
-            {
-                FileName = "mailto:nkochi04@gmail.com",
-                UseShellExecute = true
-            };
-            Process.Start(psi);
-        }
-
-        private void GitHub(object sender, RoutedEventArgs e)
-        {
-            string url = "https://github.com/nkochi04/eCommerce";
-
-            try
-            {
-                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(url) { UseShellExecute = true });
-            }
-            catch (Exception)
-            {
-                // Handle the exception if the web browser can't be opened
-            }
+            DataContext = new HomeViewModel(user);
         }
     }
 }

@@ -1,11 +1,6 @@
-﻿using System.Net.Http;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
-using DesktopPurchasingApp.DTO;
-using DesktopPurchasingApp.Models;
 using DesktopPurchasingApp.ViewModels;
-using Newtonsoft.Json;
 
 namespace DesktopPurchasingApp
 {
@@ -14,64 +9,45 @@ namespace DesktopPurchasingApp
     /// </summary>
     public partial class LoginWindow : Window
     {
+        private LoginViewModel ViewModel => (LoginViewModel)DataContext;
         public LoginWindow()
         {
             InitializeComponent();
+            DataContext = new LoginViewModel();
+            ViewModel.LoggedIn += LoggedIn;
+            ViewModel.NotLoggedIn += NotLoggedIn;
         }
 
-        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        private void NotLoggedIn()
         {
+            MessageBox.Show("Invalid username or password");
+        }
 
-            base.OnMouseLeftButtonDown(e);
-            if (e.ChangedButton == MouseButton.Left)
-                this.DragMove();
-        }        
-        //private async void Login(object sender, RoutedEventArgs e)
-        //{
-        //    //Build dto
-        //    LoginModel loginModel = new LoginModel
-        //    {
-        //        Username = usernameBox.Text,
-        //        Password = passwordBox.Password
-        //    };
-
-        //    //Send dto to server
-        //    HttpClient client = new();
-        //    client.BaseAddress = new Uri("http://localhost:5000/");
-        //    var json = JsonConvert.SerializeObject(loginModel);
-        //    var content = new StringContent(json, Encoding.UTF8, "application/json");
-        //    var response = await client.PostAsync("api/Authenticate", content);
-
-        //    //Check response
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        UserModel? user = JsonConvert.DeserializeObject<UserModel>(response.Content.ReadAsStringAsync().Result);
-        //        // Open the main window
-        //        MainWindow mainWindow = new(user);
-        //        mainWindow.Show();
-
-        //        // Close the login window
-        //        this.Close();
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Invalid username or password");
-        //    }
-        //}
-
-        private async void Login(object sender, RoutedEventArgs e)
+        private void LoggedIn()
         {
-            MainWindow mainWindow = new(null);
+            MainWindow mainWindow = new(ViewModel.User);
             mainWindow.Show();
 
             // Close the login window
             this.Close();
         }
 
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            base.OnMouseLeftButtonDown(e);
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
+
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             // Close the login window
             this.Close();
+        }
+
+        private void PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            ViewModel.Password = passwordBox.Password;
         }
     }
 }

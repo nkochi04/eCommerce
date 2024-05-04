@@ -21,11 +21,37 @@ namespace DesktopPurchasingApp
     {
         private MainViewModel ViewModel => (MainViewModel)DataContext;
         private readonly UserModel? user;
+
         public MainWindow(UserModel? user)
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
+            DataContext = new MainViewModel(user);
+            navframe.Navigate(ViewModel.activePages[MainViewModel.PageType.HomePage]);
             this.user = user;
+            ViewModel.HomePageSelectedEvent += HomePageSelected;
+            ViewModel.ProductsSelectedEvent += ProductsSelected;
+            ViewModel.ShoppingCartSelectedEvent += ShoppingCartSelected;
+            ViewModel.OrdersSelectedEvent += OrdersSelected;
+        }
+
+        private void HomePageSelected()
+        {
+            navframe.Navigate(ViewModel.activePages[MainViewModel.PageType.HomePage]);
+        }
+
+        private void ProductsSelected()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ShoppingCartSelected()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void OrdersSelected()
+        {
+            throw new NotImplementedException();
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

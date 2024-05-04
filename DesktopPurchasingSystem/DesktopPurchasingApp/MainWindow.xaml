@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopPurchasingApp"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:vm="clr-namespace:DesktopPurchasingApp.ViewModels"
+        d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
         mc:Ignorable="d"
         Title="Home" Height="800" Width="1240"
         WindowStartupLocation="CenterScreen"
@@ -31,7 +33,7 @@
                 <materialDesign:Card Margin="25" UniformCornerRadius="15" Height="100" Width="100">
                     <Image Source="Images/dps_logo.jpg" Stretch="UniformToFill" />
                 </materialDesign:Card>
-                <Button Margin="10" Width="130" Grid.Row="2" Content="Home" Click="GoToSC"/>
+                <Button BorderBrush="Black" Margin="10" Width="130" Grid.Row="2" Content="Home" Command="{Binding HomePageSelectedCommand}"/>
                 <Button Margin="10" Width="130" Grid.Row="2" Content="Products" />
                 <Button Margin="10" Width="130" Grid.Row="2" Content="Shopping Cart" />
                 <Button Margin="10" Width="130" Grid.Row="2" Content="Orders" />

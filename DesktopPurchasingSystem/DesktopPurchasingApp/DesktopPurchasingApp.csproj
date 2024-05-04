@@ -9,11 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="images\dps_logo.jpg" />
+    <None Remove="Images\dps_logo.jpg" />
+    <None Remove="Images\question_mark.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="images\dps_logo.jpg">
+    <Content Include="Images\dps_logo.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\question_mark.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

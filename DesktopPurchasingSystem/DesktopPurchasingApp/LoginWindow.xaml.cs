@@ -1,8 +1,10 @@
 ﻿using System.Net.Http;
 using System.Text;
 using System.Windows;
+using System.Windows.Input;
 using DesktopPurchasingApp.DTO;
 using DesktopPurchasingApp.Models;
+using DesktopPurchasingApp.ViewModels;
 using Newtonsoft.Json;
 
 namespace DesktopPurchasingApp
@@ -17,37 +19,53 @@ namespace DesktopPurchasingApp
             InitializeComponent();
         }
 
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+
+            base.OnMouseLeftButtonDown(e);
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }        
+        //private async void Login(object sender, RoutedEventArgs e)
+        //{
+        //    //Build dto
+        //    LoginModel loginModel = new LoginModel
+        //    {
+        //        Username = usernameBox.Text,
+        //        Password = passwordBox.Password
+        //    };
+
+        //    //Send dto to server
+        //    HttpClient client = new();
+        //    client.BaseAddress = new Uri("http://localhost:5000/");
+        //    var json = JsonConvert.SerializeObject(loginModel);
+        //    var content = new StringContent(json, Encoding.UTF8, "application/json");
+        //    var response = await client.PostAsync("api/Authenticate", content);
+
+        //    //Check response
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        UserModel? user = JsonConvert.DeserializeObject<UserModel>(response.Content.ReadAsStringAsync().Result);
+        //        // Open the main window
+        //        MainWindow mainWindow = new(user);
+        //        mainWindow.Show();
+
+        //        // Close the login window
+        //        this.Close();
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Invalid username or password");
+        //    }
+        //}
+
         private async void Login(object sender, RoutedEventArgs e)
         {
-            //Build dto
-            LoginModel loginModel = new LoginModel
-            {
-                Username = usernameBox.Text,
-                Password = passwordBox.Password
-            };
+            MainWindow mainWindow = new(null);
+            mainWindow.Show();
 
-            //Send dto to server
-            HttpClient client = new();
-            client.BaseAddress = new Uri("http://localhost:5000/");
-            var json = JsonConvert.SerializeObject(loginModel);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("api/Authenticate", content);
-
-            //Check response
-            if (response.IsSuccessStatusCode)
-            {
-                UserModel? user = JsonConvert.DeserializeObject<UserModel>(response.Content.ReadAsStringAsync().Result);
-                // Open the main window
-                MainWindow mainWindow = new(user);
-                mainWindow.Show();
-
-                // Close the login window
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Invalid username or password");
-            }
+            // Close the login window
+            this.Close();
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

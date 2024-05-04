@@ -9,6 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DesktopPurchasingApp.Models;
+using DesktopPurchasingApp.pages;
 
 namespace DesktopPurchasingApp
 {
@@ -17,9 +18,11 @@ namespace DesktopPurchasingApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private UserModel user;
         public MainWindow(UserModel user)
         {
             InitializeComponent();
+            this.user = user;
 
         }
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -29,7 +32,15 @@ namespace DesktopPurchasingApp
 
         private void GoToSC(object sender, RoutedEventArgs e)
         {
-            navframe.Navigate(new Uri("pages/Home.xaml", UriKind.Relative));
+            navframe.Navigate(new Uri("Pages/Home.xaml", UriKind.Relative));
+        }
+
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+
+            base.OnMouseLeftButtonDown(e);
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
     }
 }

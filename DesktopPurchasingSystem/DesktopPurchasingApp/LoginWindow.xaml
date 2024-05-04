@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:DesktopPurchasingApp"
+        xmlns:vm="clr-namespace:DesktopPurchasingApp.ViewModels"
         mc:Ignorable="d"
         Title="Login" Height="760" Width="450"
         WindowStartupLocation="CenterScreen"
@@ -13,6 +14,7 @@
         WindowStyle="None"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         >
+
     <materialDesign:Card UniformCornerRadius="15" Background="{DynamicResource MaterialDesignPaper}" Margin="25">
         <StackPanel Margin="0,0,0,16">
             <Button Height="30" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" Click="CloseButton_Click">
@@ -23,8 +25,15 @@
                 <Image Source="Images/dps_logo.jpg" Stretch="UniformToFill" />
             </materialDesign:Card>
             <TextBlock HorizontalAlignment="Center" Text="Login" FontSize="24" Margin="0,0,0,40"/>
-            <TextBox   Name="usernameBox" Margin="50,10,50,10"  materialDesign:HintAssist.Hint="Enter Username" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-            <PasswordBox Name="passwordBox" Margin="50,10,50,10" materialDesign:HintAssist.Hint="Enter Password"  BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="75"/>
+                </Grid.RowDefinitions>
+                <TextBox   Height="50" Name="usernameBox" Margin="50,10,50,10"  materialDesign:HintAssist.Hint="Enter Username" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <PasswordBox Height="50" Grid.Row="1" Name="passwordBox" Margin="50,10,50,10" materialDesign:HintAssist.Hint="Enter Password"  BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}"/>
+            </Grid>
+            
             <Button Margin="50" Width="150" Grid.Row="2" Content="Log in" Click="Login"/>
         </StackPanel>
     </materialDesign:Card>

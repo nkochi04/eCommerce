@@ -3,13 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Playground", "Playground\Playground.csproj", "{0C6947A5-4C5F-4C38-9AE6-0EEE2DBD5834}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesktopAppAPI", "desktopAppAPI\DesktopAppAPI.csproj", "{BD044D68-98E9-42C0-90A2-40B9176F22B3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfApp", "WpfApp\WpfApp.csproj", "{AD0726A3-A844-4911-B2AD-3B2CE206F5B5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopPurchasingApp", "DesktopPurchasingApp\DesktopPurchasingApp.csproj", "{55D9E4E5-D717-45FE-BF9F-82D519F0CB00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesktopPurchasingApp", "DesktopPurchasingApp\DesktopPurchasingApp.csproj", "{55D9E4E5-D717-45FE-BF9F-82D519F0CB00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,18 +13,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0C6947A5-4C5F-4C38-9AE6-0EEE2DBD5834}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0C6947A5-4C5F-4C38-9AE6-0EEE2DBD5834}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0C6947A5-4C5F-4C38-9AE6-0EEE2DBD5834}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0C6947A5-4C5F-4C38-9AE6-0EEE2DBD5834}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BD044D68-98E9-42C0-90A2-40B9176F22B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BD044D68-98E9-42C0-90A2-40B9176F22B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD044D68-98E9-42C0-90A2-40B9176F22B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD044D68-98E9-42C0-90A2-40B9176F22B3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AD0726A3-A844-4911-B2AD-3B2CE206F5B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD0726A3-A844-4911-B2AD-3B2CE206F5B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD0726A3-A844-4911-B2AD-3B2CE206F5B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD0726A3-A844-4911-B2AD-3B2CE206F5B5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{55D9E4E5-D717-45FE-BF9F-82D519F0CB00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{55D9E4E5-D717-45FE-BF9F-82D519F0CB00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55D9E4E5-D717-45FE-BF9F-82D519F0CB00}.Release|Any CPU.ActiveCfg = Release|Any CPU

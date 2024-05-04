@@ -10,34 +10,5 @@ namespace DesktopPurchasingApp
     /// </summary>
     public partial class App : Application
     {
-        private Process? process;
-        override protected void OnStartup(StartupEventArgs e)
-        {
-            base.OnStartup(e);
-            //StartUpApi();
-        }
-
-        override protected void OnExit(ExitEventArgs e)
-        {
-            //process?.Kill();
-        }
-
-        private void StartUpApi()
-        {
-            // Start the API
-            ProcessStartInfo startInfo = new ProcessStartInfo
-            {
-                FileName = "dotnet",
-                Arguments = @"API\DesktopAppAPI.dll",
-                UseShellExecute = false
-            };
-
-            process = new Process
-            {
-                StartInfo = startInfo
-            };
-
-            process.Start();
-        }
     }
 }

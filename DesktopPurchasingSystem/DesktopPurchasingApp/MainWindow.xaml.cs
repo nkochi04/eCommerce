@@ -37,12 +37,10 @@ namespace DesktopPurchasingApp
         {
             Home home = new(user);
             navframe.Navigate(home);
-            
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-
             base.OnMouseLeftButtonDown(e);
             if (e.ChangedButton == MouseButton.Left)
                 DragMove();
@@ -52,8 +50,6 @@ namespace DesktopPurchasingApp
         {
             LoginWindow loginWindow = new();
             loginWindow.Show();
-
-            // Close the login window
             Close();
         }
     }

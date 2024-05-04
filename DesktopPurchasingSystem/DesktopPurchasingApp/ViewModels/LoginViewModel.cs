@@ -36,15 +36,17 @@ namespace DesktopPurchasingApp.ViewModels
             try
             {
                 //Build dto
-                LoginModel loginModel = new LoginModel
+                LoginModel loginModel = new()
                 {
                     Username = Username,
                     Password = Password
                 };
 
                 //Send dto to server
-                HttpClient client = new();
-                client.BaseAddress = new Uri("http://localhost:5000/");
+                HttpClient client = new()
+                {
+                    BaseAddress = new Uri("http://localhost:5000/")
+                };
                 var json = JsonConvert.SerializeObject(loginModel);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 var response = await client.PostAsync("api/Authenticate", content);

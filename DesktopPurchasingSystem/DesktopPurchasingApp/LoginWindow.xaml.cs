@@ -29,20 +29,20 @@ namespace DesktopPurchasingApp
             mainWindow.Show();
 
             // Close the login window
-            this.Close();
+            Close();
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             base.OnMouseLeftButtonDown(e);
             if (e.ChangedButton == MouseButton.Left)
-                this.DragMove();
+                DragMove();
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             // Close the login window
-            this.Close();
+            Close();
         }
 
         private void PasswordChanged(object sender, RoutedEventArgs e)

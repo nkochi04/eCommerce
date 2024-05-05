@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DesktopPurchasingApp.Models;
 using DesktopPurchasingApp.pages;
+using DesktopPurchasingApp.Pages;
 
 namespace DesktopPurchasingApp.ViewModels
 {
@@ -10,7 +11,17 @@ namespace DesktopPurchasingApp.ViewModels
     {
         public MainViewModel(UserModel? user)
         {
-            activePages[PageType.HomePage] = new Home(user);
+            //Define shared viewmodel
+            ProductsShoppingcartViewModel productsShoppingcartViewModel = new ProductsShoppingcartViewModel();
+
+            activePages[PageType.HomePage] = new Home(user)
+            {
+                DataContext = new HomeViewModel(user)
+            };
+            activePages[PageType.Products] = new Products()
+            {
+                DataContext = productsShoppingcartViewModel
+            };
             //TODO: other pages
         }
 
@@ -29,82 +40,28 @@ namespace DesktopPurchasingApp.ViewModels
         public Action? ShoppingCartSelectedEvent { get; set; }
         public Action? OrdersSelectedEvent { get; set; }
 
-        [ObservableProperty]
-        public bool isHomePageSelected = true;
-        [ObservableProperty]
-        public bool isProductsSelected = false;
-        [ObservableProperty]
-        public bool isShoppingCartSelected = false;
-        [ObservableProperty]
-        public bool isOrdersSelected = false;
-
-        partial void OnIsHomePageSelectedChanged(bool oldValue, bool newValue)
-        {
-            if(newValue == true)
-            {
-                HomePageSelectedEvent?.Invoke();
-                
-            }
-        }
-
-        partial void OnIsProductsSelectedChanged(bool oldValue, bool newValue)
-        {
-            if (newValue == true)
-            {
-                ProductsSelectedEvent?.Invoke();
-            }
-        }
-
-        partial void OnIsShoppingCartSelectedChanged(bool oldValue, bool newValue)
-        {
-            if (newValue == true)
-            {
-                ShoppingCartSelectedEvent?.Invoke();
-            }
-        }
-
-        partial void OnIsOrdersSelectedChanged(bool oldValue, bool newValue)
-        {
-            if (newValue == true)
-            {
-                OrdersSelectedEvent?.Invoke();
-            }
-        }
-
         [RelayCommand]
         private void HomePageSelected()
         {
-            ResetSelection();
-            IsHomePageSelected = true;
+            HomePageSelectedEvent?.Invoke();
         }
 
         [RelayCommand]
         private void ProductsSelected() 
         {
-            ResetSelection();
-            IsProductsSelected = true;
+            ProductsSelectedEvent?.Invoke();
         }
 
         [RelayCommand]
         private void ShoppingCartSelected()
         {
-            ResetSelection();
-            IsShoppingCartSelected = true;
+            ShoppingCartSelectedEvent?.Invoke();
         }
 
         [RelayCommand]
         private void OrdersSelected()
         {
-            ResetSelection();
-            IsOrdersSelected = true;
-        }
-
-        private void ResetSelection() 
-        {
-            IsHomePageSelected = false;
-            IsProductsSelected = false;
-            IsShoppingCartSelected = false;
-            IsOrdersSelected = false;
+            OrdersSelectedEvent?.Invoke();
         }
     }
 }

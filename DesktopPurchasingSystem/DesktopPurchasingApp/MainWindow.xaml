@@ -34,7 +34,7 @@
                     <Image Source="Images/dps_logo.jpg" Stretch="UniformToFill" />
                 </materialDesign:Card>
                 <Button Margin="10" Width="130" Grid.Row="2" Content="Home" Command="{Binding HomePageSelectedCommand}"/>
-                <Button Margin="10" Width="130" Grid.Row="2" Content="Products" />
+                <Button Margin="10" Width="130" Grid.Row="2" Content="Products" Command="{Binding ProductsSelectedCommand}"/>
                 <Button Margin="10" Width="130" Grid.Row="2" Content="Shopping Cart" />
                 <Button Margin="10" Width="130" Grid.Row="2" Content="Orders" />
             </StackPanel>

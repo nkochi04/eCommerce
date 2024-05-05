@@ -41,7 +41,7 @@ namespace DesktopPurchasingApp
 
         private void ProductsSelected()
         {
-            throw new NotImplementedException();
+            navframe.Navigate(ViewModel.activePages[MainViewModel.PageType.Products]);
         }
 
         private void ShoppingCartSelected()
@@ -57,12 +57,6 @@ namespace DesktopPurchasingApp
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-
-        private void GoToSC(object sender, RoutedEventArgs e)
-        {
-            Home home = new(user);
-            navframe.Navigate(home);
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)

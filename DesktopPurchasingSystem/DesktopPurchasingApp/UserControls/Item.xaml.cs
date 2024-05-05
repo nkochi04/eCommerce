@@ -23,6 +23,7 @@ namespace DesktopPurchasingApp.UserControls
         public Item()
         {
             InitializeComponent();
+            
         }
 
 

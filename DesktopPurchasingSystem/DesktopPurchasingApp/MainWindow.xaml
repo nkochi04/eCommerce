@@ -35,7 +35,7 @@
                 </materialDesign:Card>
                 <Button Margin="10" Width="130" Grid.Row="2" Content="Home" Command="{Binding HomePageSelectedCommand}"/>
                 <Button Margin="10" Width="130" Grid.Row="2" Content="Products" Command="{Binding ProductsSelectedCommand}"/>
-                <Button Margin="10" Width="130" Grid.Row="2" Content="Shopping Cart" />
+                <Button Margin="10" Width="130" Grid.Row="2" Content="Shopping Cart" Command="{Binding ShoppingCartSelectedCommand}"/>
                 <Button Margin="10" Width="130" Grid.Row="2" Content="Orders" />
             </StackPanel>
             <Frame Grid.Row="1" Grid.Column="1" x:Name="navframe" NavigationUIVisibility="Hidden"/>

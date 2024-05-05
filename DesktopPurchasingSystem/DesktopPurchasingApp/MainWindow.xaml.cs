@@ -46,7 +46,7 @@ namespace DesktopPurchasingApp
 
         private void ShoppingCartSelected()
         {
-            throw new NotImplementedException();
+            navframe.Navigate(ViewModel.activePages[MainViewModel.PageType.ShoppingCart]);
         }
 
         private void OrdersSelected()

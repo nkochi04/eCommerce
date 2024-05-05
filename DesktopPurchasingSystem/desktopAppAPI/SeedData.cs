@@ -1,7 +1,5 @@
 ﻿using DesktopAppAPI.Models;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 
 namespace DesktopAppAPI
 {
@@ -47,7 +45,7 @@ namespace DesktopAppAPI
             {
                 InitializeAddresses(_db);
                 _db.SaveChanges();
-            }   
+            }
 
             //init products
             if (!_db.Products.Any())
@@ -103,7 +101,7 @@ namespace DesktopAppAPI
                     Delivery_Period_In_Days = 21,
                     Price_Per_Delivery = 300.0f
                 }
-             );
+            );
         }
 
         private static void InitializeSellers(desktopAppDbContext _db)
@@ -135,7 +133,7 @@ namespace DesktopAppAPI
 
         private static void InitializeAddresses(desktopAppDbContext _db)
         {
-            List<SellerModel> seller = _db.Sellers.ToList();
+            List<SellerModel> seller = [.. _db.Sellers];
             _db.Addresses.AddRange(
                 new AddressModel
                 {
@@ -166,11 +164,11 @@ namespace DesktopAppAPI
 
         private static void InitializeDepartments(desktopAppDbContext _db)
         {
-            Random random = new Random();
-            List<string> names = new List<string> { "Human Ressources", "Information Technology", "Software Development", "Production", "Logistics", "Facility Management", "Management", "Research and Development", "Finance", "Sales" };
+            Random random = new();
+            List<string> names = ["Human Ressources", "Information Technology", "Software Development", "Production", "Logistics", "Facility Management", "Management", "Research and Development", "Finance", "Sales"];
             foreach (var name in names)
             {
-                _db.Departments.Add(new DepartmentModel { ID = Guid.NewGuid(), Name = name, Payment_Adress = random.Next(1000,10000).ToString() });
+                _db.Departments.Add(new DepartmentModel { ID = Guid.NewGuid(), Name = name, Payment_Adress = random.Next(1000, 10000).ToString() });
             }
         }
 
@@ -188,9 +186,9 @@ namespace DesktopAppAPI
 
         private static void InitializeProducts(desktopAppDbContext _db)
         {
-            List<string> products = new List<string> { "Computer", "Printer", "Telephone", "Fax machine", "Scanner", "Copier", "Monitor", "Keyboard", "Mouse", "Laptop", "Projector", "Power supply", "Iron for shirts", "Floor lamp", "Desk lamp", "Paper shredder", "Radio alarm clock", "USB hub", "Webcam", "Headset", "Speakers", "Mobile phone charger", "Tablet", "Smartboard", "Remote control", "Batteries", "Power cable", "Magnetic whiteboard", "Stapler", "Staple remover", "Letter scale", "Space heater", "Humidifier", "Iron for documents", "HDMI cable", "VGA cable", "DVI cable", "DisplayPort cable", "Ethernet cable", "USB cable", "Replacement ink cartridges", "Replacement toner cartridges", "Office chair with massage function", "Footrest", "Laptop stand", "Desk fan", "Water dispenser", "Coffee machine" };
+            List<string> products = ["Computer", "Printer", "Telephone", "Fax machine", "Scanner", "Copier", "Monitor", "Keyboard", "Mouse", "Laptop", "Projector", "Power supply", "Iron for shirts", "Floor lamp", "Desk lamp", "Paper shredder", "Radio alarm clock", "USB hub", "Webcam", "Headset", "Speakers", "Mobile phone charger", "Tablet", "Smartboard", "Remote control", "Batteries", "Power cable", "Magnetic whiteboard", "Stapler", "Staple remover", "Letter scale", "Space heater", "Humidifier", "Iron for documents", "HDMI cable", "VGA cable", "DVI cable", "DisplayPort cable", "Ethernet cable", "USB cable", "Replacement ink cartridges", "Replacement toner cartridges", "Office chair with massage function", "Footrest", "Laptop stand", "Desk fan", "Water dispenser", "Coffee machine"];
 
-            List<SellerModel> seller = _db.Sellers.ToList();
+            List<SellerModel> seller = [.. _db.Sellers];
 
             for (int i = 0; i < products.Count; i++)
             {
@@ -206,12 +204,11 @@ namespace DesktopAppAPI
                     }
                 );
             }
-
         }
 
         private static void InitializeProductSerialNumber(desktopAppDbContext _db)
         {
-            Random random = new Random();
+            Random random = new();
             int randomNumber;
             foreach (var product in _db.Products)
             {
@@ -221,10 +218,6 @@ namespace DesktopAppAPI
                     _db.Add(new PieceModel { Product_ID = product.ID, Serial_Number = randomNumber, Sold = false });
                 }
             }
-
         }
-
-
-
     }
 }

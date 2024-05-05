@@ -12,13 +12,17 @@ namespace DesktopPurchasingApp.ViewModels
         public MainViewModel(UserModel? user)
         {
             //Define shared viewmodel
-            ProductsShoppingcartViewModel productsShoppingcartViewModel = new ProductsShoppingcartViewModel();
+            ProductsShoppingcartViewModel productsShoppingcartViewModel = new();
 
             activePages[PageType.HomePage] = new Home(user)
             {
                 DataContext = new HomeViewModel(user)
             };
             activePages[PageType.Products] = new Products()
+            {
+                DataContext = productsShoppingcartViewModel
+            };
+            activePages[PageType.ShoppingCart] = new ShoppingCart()
             {
                 DataContext = productsShoppingcartViewModel
             };

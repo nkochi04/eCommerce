@@ -13,7 +13,7 @@
         <Grid >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="27"/>
                 <ColumnDefinition Width="80"/>
@@ -28,11 +28,9 @@
             </Ellipse>
 
             <TextBlock TextWrapping="Wrap" Grid.Column="1" Text="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center"/>
-            
+
             <TextBlock Grid.Column="1" Text="{Binding Path=Ref, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}" Foreground="#909090" FontSize="11" VerticalAlignment="Center" Margin="0,55,0,0"/>
-            
-            <TextBlock Grid.Column="2" Text="{Binding Path=Color, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
-            
+
             <TextBlock Grid.Column="3" Text="{Binding Path=Count, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
 
             <StackPanel Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Left">

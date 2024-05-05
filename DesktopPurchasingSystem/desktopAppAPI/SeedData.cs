@@ -188,7 +188,7 @@ namespace DesktopAppAPI
 
         private static void InitializeProducts(desktopAppDbContext _db)
         {
-            List<string> products = new List<string> { "Computer", "Printer", "Telephone", "Fax machine", "Scanner", "Copier", "Monitor", "Keyboard", "Mouse", "Laptop", "Projector", "Power supply", "Iron for shirts", "Floor lamp", "Desk lamp", "Paper shredder", "Radio alarm clock", "USB hub", "Webcam", "Headset", "Speakers", "Mobile phone charger", "Tablet", "Smartboard", "Remote control", "Batteries", "Power cable", "Magnetic whiteboard", "Stapler", "Staple remover", "Letter scale", "Space heater", "Humidifier", "Iron for documents", "Paper shredder", "HDMI cable", "VGA cable", "DVI cable", "DisplayPort cable", "Ethernet cable", "USB cable", "Replacement ink cartridges", "Replacement toner cartridges", "Office chair with massage function", "Footrest", "Laptop stand", "Desk fan", "Water dispenser", "Coffee machine" };
+            List<string> products = new List<string> { "Computer", "Printer", "Telephone", "Fax machine", "Scanner", "Copier", "Monitor", "Keyboard", "Mouse", "Laptop", "Projector", "Power supply", "Iron for shirts", "Floor lamp", "Desk lamp", "Paper shredder", "Radio alarm clock", "USB hub", "Webcam", "Headset", "Speakers", "Mobile phone charger", "Tablet", "Smartboard", "Remote control", "Batteries", "Power cable", "Magnetic whiteboard", "Stapler", "Staple remover", "Letter scale", "Space heater", "Humidifier", "Iron for documents", "HDMI cable", "VGA cable", "DVI cable", "DisplayPort cable", "Ethernet cable", "USB cable", "Replacement ink cartridges", "Replacement toner cartridges", "Office chair with massage function", "Footrest", "Laptop stand", "Desk fan", "Water dispenser", "Coffee machine" };
 
             List<SellerModel> seller = _db.Sellers.ToList();
 
@@ -201,7 +201,8 @@ namespace DesktopAppAPI
                         Seller_ID = seller[i % 3].ID,
                         Name = products[i],
                         PiecesAvailable = 50,
-                        Price = 35
+                        Price = 35,
+                        ImageData = File.ReadAllBytes($"Images/{products[i].Replace(" ", string.Empty).ToLower()}.jpg")
                     }
                 );
             }

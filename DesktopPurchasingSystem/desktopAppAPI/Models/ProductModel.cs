@@ -10,5 +10,6 @@ namespace DesktopAppAPI.Models
         public string Name { get; set; } = string.Empty;
         public float Price { get; set; }
         public int PiecesAvailable { get; set; }
+        public byte[]? ImageData { get; set; }
     }
 }

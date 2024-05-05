@@ -87,7 +87,8 @@ namespace DesktopAppAPI.Migrations
                     Seller_ID = table.Column<Guid>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Price = table.Column<float>(type: "REAL", nullable: false),
-                    PiecesAvailable = table.Column<int>(type: "INTEGER", nullable: false)
+                    PiecesAvailable = table.Column<int>(type: "INTEGER", nullable: false),
+                    ImageData = table.Column<byte[]>(type: "BLOB", nullable: true)
                 },
                 constraints: table =>
                 {

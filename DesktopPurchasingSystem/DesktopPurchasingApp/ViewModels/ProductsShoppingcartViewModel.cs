@@ -39,7 +39,7 @@ namespace DesktopPurchasingApp.ViewModels
             {
                 foreach (var item in ProductList)
                 {
-                    if (!item.Name.Contains(newValue))
+                    if (!item.Name.Contains((newValue), StringComparison.CurrentCultureIgnoreCase))
                     {
                         item.Visibility = Visibility.Collapsed;
                     }

@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:DesktopPurchasingApp.Pages"
       xmlns:uc="clr-namespace:DesktopPurchasingApp.UserControls"
       xmlns:vm="clr-namespace:DesktopPurchasingApp.ViewModels"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       d:DataContext="{d:DesignInstance Type=vm:ProductsShoppingcartViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -13,15 +14,15 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBox Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}" Background="Turquoise"></TextBox>
+        <TextBox Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right"  Width="150" Name="usernameBox" Margin="50,10,50,10"  materialDesign:HintAssist.Hint="Search" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
             <ItemsControl ItemsSource="{Binding ProductList}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <uc:Item Visibility="{Binding Visibility}" Title="{Binding Name}" Ref="{Binding Id}" Color="Black" Count="1" Price="{Binding Price}"/>
+                        <uc:Item Source="{Binding Image}"  Visibility="{Binding Visibility}" Title="{Binding Name}" Ref="{Binding Id}" Color="Black" Count="1" Price="{Binding Price}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
                 <ItemsControl.ItemsPanel>

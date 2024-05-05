@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DesktopPurchasingApp.Models;
@@ -28,7 +33,7 @@ namespace DesktopPurchasingApp.ViewModels
 
         partial void OnFilterChanged(string? oldValue, string newValue)
         {
-            if(newValue == "")
+            if (newValue == "")
             {
                 foreach (var item in ProductList)
                 {
@@ -71,7 +76,7 @@ namespace DesktopPurchasingApp.ViewModels
                 //Check response
                 if (response.IsSuccessStatusCode)
                 {
-                    ProductList =  JsonConvert.DeserializeObject<ObservableCollection<Product>>(response.Content.ReadAsStringAsync().Result);
+                    ProductList = JsonConvert.DeserializeObject<ObservableCollection<Product>>(response.Content.ReadAsStringAsync().Result);
                 }
                 else
                 {
@@ -85,7 +90,7 @@ namespace DesktopPurchasingApp.ViewModels
         }
     }
 
-   
+
 
     public partial class Product : ObservableObject
     {
@@ -106,5 +111,29 @@ namespace DesktopPurchasingApp.ViewModels
 
         [ObservableProperty]
         public Visibility visibility = Visibility.Visible;
+
+        public byte[]? ImageData { get; set; }
+
+        public BitmapImage Image
+        {
+            get
+            {
+                if (ImageData == null)
+                {
+                    return null;
+                }
+
+                using (var ms = new MemoryStream(ImageData))
+                {
+                    var image = new BitmapImage();
+                    image.BeginInit();
+                    image.CacheOption = BitmapCacheOption.OnLoad; // Here we set the CacheOption to OnLoad
+                    image.StreamSource = ms;
+                    image.EndInit();
+                    return image;
+                }
+            }
+        }
+
     }
 }

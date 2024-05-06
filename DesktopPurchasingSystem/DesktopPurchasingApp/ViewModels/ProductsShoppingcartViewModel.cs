@@ -20,6 +20,8 @@ namespace DesktopPurchasingApp.ViewModels
         private ObservableCollection<Product> productList = [];
 
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(IncreaseCountCommand))]
+        [NotifyCanExecuteChangedFor(nameof(DecreaseCountCommand))]
         private ObservableCollection<Product> shoppingCartList = [];
 
         [ObservableProperty]
@@ -48,6 +50,36 @@ namespace DesktopPurchasingApp.ViewModels
                     }
                 }
             }
+        }
+
+        [RelayCommand]
+        private void RemoveItem(object obj)
+        {
+            ShoppingCartList.Remove((Product)obj);
+        }
+
+        [RelayCommand(CanExecute = nameof(CanIncreaseCount))]
+        private void IncreaseCount(object obj)
+        {
+            var product = (Product)obj;
+            product.Pieces++;
+        }
+
+        private bool CanIncreaseCount(object obj)
+        {
+            return obj != null ? ((Product)obj).PiecesAvailable > ((Product)obj).Pieces : true;
+        }
+
+        [RelayCommand(CanExecute = nameof(CanDecreaseCount))]
+        private void DecreaseCount(object obj)
+        {
+            var product = (Product)obj;
+            product.Pieces--;
+        }
+
+        private bool CanDecreaseCount(object obj)
+        {
+            return obj != null ? ((Product)obj).PiecesAvailable > ((Product)obj).Pieces : true;
         }
 
         [RelayCommand]
@@ -105,6 +137,9 @@ namespace DesktopPurchasingApp.ViewModels
 
         [ObservableProperty]
         public int piecesAvailable;
+
+        [ObservableProperty]
+        public int pieces = 1;
 
         [ObservableProperty]
         public Visibility visibility = Visibility.Visible;

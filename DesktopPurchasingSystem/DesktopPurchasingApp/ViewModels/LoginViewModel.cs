@@ -5,7 +5,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DesktopPurchasingApp.DTO;
 using DesktopPurchasingApp.Models;
-using MaterialDesignThemes.Wpf;
 using Newtonsoft.Json;
 
 namespace DesktopPurchasingApp.ViewModels

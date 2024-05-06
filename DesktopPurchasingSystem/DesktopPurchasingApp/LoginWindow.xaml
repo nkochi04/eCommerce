@@ -35,7 +35,7 @@
                 <PasswordBox Name="passwordBox" PasswordChanged="PasswordChanged" Height="50" Grid.Row="1" Margin="50,10,50,10" materialDesign:HintAssist.Hint="Enter Password"  BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}"/>
             </Grid>
             
-            <Button Margin="50" Width="150" Grid.Row="2" Content="Log in" Command="{Binding LoginCommand}"/>
+            <Button Name="loginButton" Margin="50" Width="150" Grid.Row="2" Content="Log in" Command="{Binding LoginCommand}"/>
         </StackPanel>
     </materialDesign:Card>
 </Window>

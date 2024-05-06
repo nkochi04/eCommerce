@@ -49,5 +49,21 @@ namespace DesktopPurchasingApp
         {
             ViewModel.Password = passwordBox.Password;
         }
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            base.OnKeyDown(e);
+            if (e.Key == Key.Enter && loginButton.IsEnabled)
+            {
+                ViewModel.LoginCommand.Execute(null);
+            }   
+        }
+
+        protected override void OnClosed(System.EventArgs e)
+        {
+            base.OnClosed(e);
+            ViewModel.LoggedIn -= LoggedIn;
+            ViewModel.NotLoggedIn -= NotLoggedIn;
+        }
     }
 }

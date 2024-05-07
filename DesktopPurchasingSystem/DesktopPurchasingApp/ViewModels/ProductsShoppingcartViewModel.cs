@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Net.Http;
 using System.Windows;
@@ -20,8 +21,6 @@ namespace DesktopPurchasingApp.ViewModels
         private ObservableCollection<Product> productList = [];
 
         [ObservableProperty]
-        [NotifyCanExecuteChangedFor(nameof(IncreaseCountCommand))]
-        [NotifyCanExecuteChangedFor(nameof(DecreaseCountCommand))]
         private ObservableCollection<Product> shoppingCartList = [];
 
         [ObservableProperty]
@@ -55,37 +54,46 @@ namespace DesktopPurchasingApp.ViewModels
         [RelayCommand]
         private void RemoveItem(object obj)
         {
-            ShoppingCartList.Remove((Product)obj);
+            Product product = (Product)obj;
+            if (ShoppingCartList.Contains(product))
+            {
+                ShoppingCartList.Remove(product);
+                ProductList.Add(product);
+                product.Pieces = 1;
+            }
         }
 
-        [RelayCommand(CanExecute = nameof(CanIncreaseCount))]
+        [RelayCommand]
         private void IncreaseCount(object obj)
         {
+            if (((Product)obj).Pieces  >= ((Product)obj).PiecesAvailable)
+            {
+                return;
+            }
             var product = (Product)obj;
             product.Pieces++;
         }
 
-        private bool CanIncreaseCount(object obj)
-        {
-            return obj != null ? ((Product)obj).PiecesAvailable > ((Product)obj).Pieces : true;
-        }
-
-        [RelayCommand(CanExecute = nameof(CanDecreaseCount))]
+        [RelayCommand]
         private void DecreaseCount(object obj)
         {
+            if (((Product)obj).Pieces <= 1)
+            {
+                return;
+            }
             var product = (Product)obj;
             product.Pieces--;
-        }
-
-        private bool CanDecreaseCount(object obj)
-        {
-            return obj != null ? ((Product)obj).PiecesAvailable > ((Product)obj).Pieces : true;
         }
 
         [RelayCommand]
         private void AddItem(object obj)
         {
-            ShoppingCartList.Add((Product)obj);
+            var product = (Product)obj;
+            if (!ShoppingCartList.Contains(product))
+            {
+                ShoppingCartList.Add(product);
+                ProductList.Remove(product);
+            }
         }
 
         private async void LoadProducts()
@@ -113,6 +121,8 @@ namespace DesktopPurchasingApp.ViewModels
                 }
 
                 ProductList = deserializedProductList;
+
+
             }
             catch (Exception ex)
             {

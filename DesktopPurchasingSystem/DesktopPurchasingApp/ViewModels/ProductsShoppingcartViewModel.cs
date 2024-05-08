@@ -55,18 +55,16 @@ namespace DesktopPurchasingApp.ViewModels
         private void RemoveItem(object obj)
         {
             Product product = (Product)obj;
-            if (ShoppingCartList.Contains(product))
-            {
-                ShoppingCartList.Remove(product);
-                ProductList.Add(product);
-                product.Pieces = 1;
-            }
+            ShoppingCartList.Remove(product);
+            ProductList.Add(product);
+            product.Pieces = 1;
+
         }
 
         [RelayCommand]
         private void IncreaseCount(object obj)
         {
-            if (((Product)obj).Pieces  >= ((Product)obj).PiecesAvailable)
+            if (((Product)obj).Pieces >= ((Product)obj).PiecesAvailable)
             {
                 return;
             }
@@ -89,11 +87,9 @@ namespace DesktopPurchasingApp.ViewModels
         private void AddItem(object obj)
         {
             var product = (Product)obj;
-            if (!ShoppingCartList.Contains(product))
-            {
-                ShoppingCartList.Add(product);
-                ProductList.Remove(product);
-            }
+            ShoppingCartList.Add(product);
+            ProductList.Remove(product);
+
         }
 
         private async void LoadProducts()

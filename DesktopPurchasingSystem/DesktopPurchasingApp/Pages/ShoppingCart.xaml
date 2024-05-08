@@ -13,10 +13,10 @@
       Title="ShoppingCart">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
             <ItemsControl ItemsSource="{Binding ShoppingCartList}">
                 <ItemsControl.ItemTemplate>
@@ -31,5 +31,9 @@
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
         </ScrollViewer>
+        <materialDesign:Card Grid.Column="1" UniformCornerRadius="15" Background="{DynamicResource MaterialDesignPaper}" Margin="10">
+            
+        </materialDesign:Card>
+        
     </Grid>
 </Page>

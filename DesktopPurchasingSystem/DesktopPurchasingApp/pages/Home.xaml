@@ -12,12 +12,11 @@
       Title="Home">
 
     <Grid>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="250"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <materialDesign:Card Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="30,10,30,30" UniformCornerRadius="15" MaxHeight="200" >
+        <materialDesign:Card Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="50,30,50,30" UniformCornerRadius="15" MaxHeight="200" >
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200"/>
@@ -39,11 +38,27 @@
             </Grid>
         </materialDesign:Card>
 
-        <StackPanel Grid.Row="1">
-            <TextBlock Text="{Binding User.ID}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24"/>
-            <TextBlock Text="{Binding User.Firstname}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24"/>
-            <TextBlock Text="{Binding User.Lastname}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24"/>
-            <TextBlock Text="{Binding User.Username}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24"/>
-        </StackPanel>
+        <materialDesign:Card Background="{DynamicResource MaterialDesignPaper}" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50" UniformCornerRadius="15" Height="350" Width="300">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="210"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <materialDesign:PackIcon Grid.ColumnSpan="2" Kind="Account" Height="200" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" BorderBrush="Black" BorderThickness="10"/>
+                <TextBlock Text="User" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="25" Margin="5"/>
+                <TextBlock Text="Firstname" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="25" Margin="5"/>
+                <TextBlock Text="Lastname" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="25" Margin="5"/>
+
+                <TextBlock Text="{Binding User.Username}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="25" Margin="5"/>
+                <TextBlock Text="{Binding User.Firstname}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="25" Margin="5"/>
+                <TextBlock Text="{Binding User.Lastname}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="25" Margin="5"/>
+            </Grid>
+        </materialDesign:Card>
     </Grid>
 </Page>

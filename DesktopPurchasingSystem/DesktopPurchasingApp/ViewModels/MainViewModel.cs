@@ -9,8 +9,13 @@ namespace DesktopPurchasingApp.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {
+        [ObservableProperty]
+        public UserModel? user;
+
         public MainViewModel(UserModel? user)
         {
+            this.user = user;
+
             //Define shared viewmodel
             ProductsShoppingcartViewModel productsShoppingcartViewModel = new();
 

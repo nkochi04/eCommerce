@@ -17,7 +17,7 @@ namespace DesktopAppAPI.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
 
-            modelBuilder.Entity("DesktopAppAPI.Models.AddressModel", b =>
+            modelBuilder.Entity("DesktopAppAPI.Models.Address", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
@@ -43,7 +43,7 @@ namespace DesktopAppAPI.Migrations
                     b.ToTable("Addresses");
                 });
 
-            modelBuilder.Entity("DesktopAppAPI.Models.DepartmentModel", b =>
+            modelBuilder.Entity("DesktopAppAPI.Models.Department", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
@@ -62,7 +62,7 @@ namespace DesktopAppAPI.Migrations
                     b.ToTable("Departments");
                 });
 
-            modelBuilder.Entity("DesktopAppAPI.Models.OrderModel", b =>
+            modelBuilder.Entity("DesktopAppAPI.Models.Order", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
@@ -79,30 +79,16 @@ namespace DesktopAppAPI.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("DesktopAppAPI.Models.OrderProductModel", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("Order_ID")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("Product_ID")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("OrderXProducts");
-                });
-
-            modelBuilder.Entity("DesktopAppAPI.Models.PieceModel", b =>
+            modelBuilder.Entity("DesktopAppAPI.Models.Piece", b =>
                 {
                     b.Property<int>("Serial_Number")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid>("Product_ID")
+                    b.Property<Guid?>("OrderId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("ProductId")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("Sold")
@@ -110,10 +96,14 @@ namespace DesktopAppAPI.Migrations
 
                     b.HasKey("Serial_Number");
 
-                    b.ToTable("Product_SerialNumbers");
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Pieces");
                 });
 
-            modelBuilder.Entity("DesktopAppAPI.Models.ProductModel", b =>
+            modelBuilder.Entity("DesktopAppAPI.Models.Product", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
@@ -126,9 +116,6 @@ namespace DesktopAppAPI.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PiecesAvailable")
-                        .HasColumnType("INTEGER");
-
                     b.Property<float>("Price")
                         .HasColumnType("REAL");
 
@@ -140,13 +127,13 @@ namespace DesktopAppAPI.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("DesktopAppAPI.Models.SellerModel", b =>
+            modelBuilder.Entity("DesktopAppAPI.Models.Seller", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("Adress_ID")
+                    b.Property<Guid>("AddressId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
@@ -159,10 +146,12 @@ namespace DesktopAppAPI.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("AddressId");
+
                     b.ToTable("Sellers");
                 });
 
-            modelBuilder.Entity("DesktopAppAPI.Models.SupplierModel", b =>
+            modelBuilder.Entity("DesktopAppAPI.Models.Supplier", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
@@ -183,13 +172,13 @@ namespace DesktopAppAPI.Migrations
                     b.ToTable("Suppliers");
                 });
 
-            modelBuilder.Entity("DesktopAppAPI.Models.UserModel", b =>
+            modelBuilder.Entity("DesktopAppAPI.Models.User", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("Department_ID")
+                    b.Property<Guid>("DepartmentId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Firstname")
@@ -210,7 +199,68 @@ namespace DesktopAppAPI.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("DepartmentId");
+
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("DesktopAppAPI.Models.Piece", b =>
+                {
+                    b.HasOne("DesktopAppAPI.Models.Order", "Order")
+                        .WithMany("Pieces")
+                        .HasForeignKey("OrderId");
+
+                    b.HasOne("DesktopAppAPI.Models.Product", "Product")
+                        .WithMany("Pieces")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("DesktopAppAPI.Models.Seller", b =>
+                {
+                    b.HasOne("DesktopAppAPI.Models.Address", "Address")
+                        .WithMany("Sellers")
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Address");
+                });
+
+            modelBuilder.Entity("DesktopAppAPI.Models.User", b =>
+                {
+                    b.HasOne("DesktopAppAPI.Models.Department", "Department")
+                        .WithMany("Users")
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Department");
+                });
+
+            modelBuilder.Entity("DesktopAppAPI.Models.Address", b =>
+                {
+                    b.Navigation("Sellers");
+                });
+
+            modelBuilder.Entity("DesktopAppAPI.Models.Department", b =>
+                {
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("DesktopAppAPI.Models.Order", b =>
+                {
+                    b.Navigation("Pieces");
+                });
+
+            modelBuilder.Entity("DesktopAppAPI.Models.Product", b =>
+                {
+                    b.Navigation("Pieces");
                 });
 #pragma warning restore 612, 618
         }

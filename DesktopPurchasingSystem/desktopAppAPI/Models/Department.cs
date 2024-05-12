@@ -2,12 +2,13 @@
 
 namespace DesktopAppAPI.Models
 {
-    public class SupplierModel
+    public class Department
     {
         [Key]
         public Guid ID { get; set; }
         public string Name { get; set; } = string.Empty;
-        public int Delivery_Period_In_Days { get; set; }
-        public float Price_Per_Delivery { get; set; }
+        public string Payment_Adress { get; set; } = string.Empty;
+
+        public virtual ICollection<User> Users { get; set; }
     }
 }

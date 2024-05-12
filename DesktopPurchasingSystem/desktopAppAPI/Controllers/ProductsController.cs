@@ -1,6 +1,7 @@
 ﻿using DesktopAppAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DesktopAppAPI.Controllers
 {
@@ -11,9 +12,10 @@ namespace DesktopAppAPI.Controllers
         private readonly desktopAppDbContext _db = db;
 
         [HttpGet]
-        public IActionResult GetProducts()
+        public IEnumerable<Product> GetProducts()
         {
-            return  Ok(_db.Products.ToList());
+            return _db.Products.Include(p => p.Pieces);
         }
+        //TODO: DTO's
     }
 }

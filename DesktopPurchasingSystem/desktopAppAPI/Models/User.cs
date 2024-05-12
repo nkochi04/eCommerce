@@ -2,7 +2,7 @@
 
 namespace DesktopAppAPI.Models
 {
-    public class UserModel
+    public class User
     {
         [Key]
         public Guid ID { get; set; }
@@ -10,6 +10,8 @@ namespace DesktopAppAPI.Models
         public string Password { get; set; } = string.Empty;
         public string Firstname { get; set; } = string.Empty;
         public string Lastname { get; set; } = string.Empty;
-        public Guid Department_ID { get; set; }
+
+        public Guid DepartmentId { get; set; }
+        public virtual required Department Department { get; set; }
     }
 }

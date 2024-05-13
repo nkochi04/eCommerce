@@ -12,10 +12,27 @@ namespace DesktopAppAPI.Controllers
         private readonly desktopAppDbContext _db = db;
 
         [HttpGet]
-        public IEnumerable<Product> GetProducts()
+        public IEnumerable<ProductDTO> GetProducts()
         {
-            return _db.Products.Include(p => p.Pieces);
+            return [.. _db.Products
+                .Include(p => p.Pieces)
+                .Select(p => new ProductDTO
+                {
+                    ID = p.ID,
+                    Name = p.Name,
+                    Price = p.Price,
+                    ImageData = p.ImageData
+                    //Todo: Add Pieces
+                })];
         }
-        //TODO: DTO's
+    }
+
+    public class ProductDTO
+    {
+        public Guid ID { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public float Price { get; set; }
+        public byte[]? ImageData { get; set; } = null;
+
     }
 }

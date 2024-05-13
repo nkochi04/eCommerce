@@ -9,6 +9,6 @@ namespace DesktopAppAPI.Models
         public string Name { get; set; } = string.Empty;
         public string Payment_Adress { get; set; } = string.Empty;
 
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<User>? Users { get; set; }
     }
 }

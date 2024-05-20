@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace DesktopAppAPI.Controllers
 {
@@ -14,7 +16,7 @@ namespace DesktopAppAPI.Controllers
         [HttpGet]
         public IEnumerable<ProductDTO> GetProducts()
         {
-            return [.. _db.Products
+            ProductDTO[] products = [.. _db.Products
                 .Include(p => p.Pieces)
                 .Select(p => new ProductDTO
                 {
@@ -22,8 +24,22 @@ namespace DesktopAppAPI.Controllers
                     Name = p.Name,
                     Price = p.Price,
                     ImageData = p.ImageData
-                    //Todo: Add Pieces
                 })];
+
+            PieceDTO[] pieces = [.. _db.Pieces
+                .Select(p => new PieceDTO{
+                    Serial_Number = p.Serial_Number,
+                    Sold = p.Sold,
+                    OrderId = p.OrderId,
+                    ProductId = p.ProductId,
+            })];
+
+            foreach (var product in products)
+            {
+                product.Pieces.AddRange(pieces.Where(x => x.ProductId == product.ID).ToList());
+            }
+
+            return products;
         }
     }
 
@@ -34,5 +50,15 @@ namespace DesktopAppAPI.Controllers
         public float Price { get; set; }
         public byte[]? ImageData { get; set; } = null;
 
+        public List<PieceDTO> Pieces { get; set; } = [];
+    }
+
+    public class PieceDTO
+    {
+        public int Serial_Number { get; set; }
+        public bool Sold { get; set; }
+
+        public Guid? OrderId { get; set; }
+        public Guid ProductId { get; set; }
     }
 }

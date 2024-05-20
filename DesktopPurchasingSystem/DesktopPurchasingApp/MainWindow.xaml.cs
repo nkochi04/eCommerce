@@ -51,7 +51,7 @@ namespace DesktopPurchasingApp
 
         private void OrdersSelected()
         {
-            throw new NotImplementedException();
+            navframe.Navigate(ViewModel.activePages[MainViewModel.PageType.Orders]);
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

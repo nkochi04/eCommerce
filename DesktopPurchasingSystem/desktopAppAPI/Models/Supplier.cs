@@ -2,7 +2,7 @@
 
 namespace DesktopAppAPI.Models
 {
-    public class SupplierModel
+    public class Supplier
     {
         [Key]
         public Guid ID { get; set; }

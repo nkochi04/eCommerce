@@ -19,6 +19,7 @@ namespace DesktopPurchasingApp.ViewModels
             //Define shared viewmodel
             ProductsShoppingcartViewModel productsShoppingcartViewModel = new();
 
+            //Define pages with viewmodels
             activePages[PageType.HomePage] = new Home(user)
             {
                 DataContext = new HomeViewModel(user)
@@ -31,7 +32,10 @@ namespace DesktopPurchasingApp.ViewModels
             {
                 DataContext = productsShoppingcartViewModel
             };
-            //TODO: other pages
+            activePages[PageType.Orders] = new Orders()
+            {
+                DataContext = new OrderViewModel()
+            };
         }
 
         public enum PageType

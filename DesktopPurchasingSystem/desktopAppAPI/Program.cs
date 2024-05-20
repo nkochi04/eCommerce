@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using DesktopAppAPI;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,7 +10,10 @@ var configuration = builder.Configuration;
 builder.Services.AddDbContext<desktopAppDbContext>(options =>
         options.UseSqlite(configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve
+);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

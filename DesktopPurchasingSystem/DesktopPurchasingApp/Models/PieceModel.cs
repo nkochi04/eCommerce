@@ -1,12 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace DesktopPurchasingApp.Models
 {
-    public class PieceModel
+    public partial class PieceModel : ObservableObject
     {
-        [Key]
-        public int Serial_Number { get; set; }
-        public Guid Product_ID { get; set; }
-        public bool Sold { get; set; }
+        [ObservableProperty]
+        public int serial_Number ;
+        [ObservableProperty]
+        public bool sold;
+        [ObservableProperty]
+        public Guid? orderId;
+        [ObservableProperty]
+        public Guid productId;
     }
 }

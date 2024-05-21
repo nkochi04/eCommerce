@@ -25,6 +25,8 @@ namespace DesktopPurchasingApp.Models
         [ObservableProperty]
         public int pieces = 1;
 
+
+
         [ObservableProperty]
         public Visibility visibility = Visibility.Visible;
 

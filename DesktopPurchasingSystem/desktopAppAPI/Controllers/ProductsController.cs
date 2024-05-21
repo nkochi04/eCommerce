@@ -23,7 +23,9 @@ namespace DesktopAppAPI.Controllers
                     ID = p.ID,
                     Name = p.Name,
                     Price = p.Price,
-                    ImageData = p.ImageData
+                    ImageData = p.ImageData,
+                    Seller_Id = p.Seller_ID
+                    
                 })];
 
             PieceDTO[] pieces = [.. _db.Pieces
@@ -46,6 +48,7 @@ namespace DesktopAppAPI.Controllers
     public class ProductDTO
     {
         public Guid ID { get; set; }
+        public Guid Seller_Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public float Price { get; set; }
         public byte[]? ImageData { get; set; } = null;

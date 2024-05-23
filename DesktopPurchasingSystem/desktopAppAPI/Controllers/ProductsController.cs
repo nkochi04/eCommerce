@@ -35,10 +35,10 @@ namespace DesktopAppAPI.Controllers
                     ProductId = p.ProductId,
                 })];
 
-            foreach (var product in products)
-            {
-                product.Pieces.AddRange(pieces.Where(x => x.ProductId == product.Id).ToList());
-            }
+            //foreach (var product in products)
+            //{
+            //    product.Pieces.AddRange(pieces.Where(x => x.ProductId == product.Id).ToList());
+            //}
 
             return products;
         }

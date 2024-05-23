@@ -2,12 +2,12 @@
 {
     public class OrderDto
     {
-        public Guid Id;
+        public Guid Id { get; set; }
 
-        public Guid User_ID;
+        public Guid User_ID { get; set; }
 
-        public Guid Supplier_ID;
+        public Guid Supplier_ID { get; set; }
 
-        public required List<ProductDto> Products;
+        public required List<ProductDto> Products { get; set; }
     }
 }

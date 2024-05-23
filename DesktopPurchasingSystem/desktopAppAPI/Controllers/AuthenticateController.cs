@@ -17,11 +17,17 @@ namespace DesktopAppAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<User> Login(LoginModel user)
+        public ActionResult<UserDb> Login(LoginDto user)
         {
-            var userFromDb = _db.Users.Include(u => u.Department).FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password);
-
+            var userFromDb = _db.Users.FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password);
             if (userFromDb == null)
+            {
+                return NotFound();
+            }
+
+            var department = _db.Departments.FirstOrDefault(d => d.ID == userFromDb.DepartmentId);
+
+            if (department == null)
             {
                 return NotFound();
             }
@@ -35,30 +41,13 @@ namespace DesktopAppAPI.Controllers
                 Department_ID = userFromDb.DepartmentId,
                 Department = new DepartmentDto
                 {
-                    Id = userFromDb.Department.ID,
-                    Name = userFromDb.Department.Name,
-                    Payment_Adress = userFromDb.Department.Payment_Adress
+                    Id = department.ID,
+                    Name = department.Name,
+                    Payment_Adress = department.Payment_Adress
                 }
             };
 
             return Ok(userDto);
         }
-    }
-
-    public class UserDto
-    {
-        public Guid Id { get; set; }
-        public string Username { get; set; }
-        public string Firstname { get; set; }
-        public string Lastname { get; set; }
-        public Guid Department_ID { get; set; }
-        public DepartmentDto Department { get; set; }
-    }
-
-    public class DepartmentDto
-    {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Payment_Adress { get; set; }
     }
 }

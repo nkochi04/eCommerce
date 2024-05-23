@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DesktopPurchasingApp.Models
 {
-    public partial class PieceModel : ObservableObject
+    public partial class PieceObservable : ObservableObject
     {
         [ObservableProperty]
         public int serial_Number ;

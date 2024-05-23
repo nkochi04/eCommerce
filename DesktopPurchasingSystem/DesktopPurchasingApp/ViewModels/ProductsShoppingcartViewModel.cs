@@ -2,10 +2,12 @@
 using System.ComponentModel;
 using System.IO;
 using System.Net.Http;
+using System.Text;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using DesktopAppAPI.DTO;
 using DesktopPurchasingApp.Models;
 using Newtonsoft.Json;
 
@@ -13,16 +15,19 @@ namespace DesktopPurchasingApp.ViewModels
 {
     public partial class ProductsShoppingcartViewModel : ObservableObject
     {
-        public ProductsShoppingcartViewModel()
+        readonly UserDto user;
+
+        public ProductsShoppingcartViewModel(UserDto user)
         {
+            this.user = user;
             LoadProducts();
         }
 
         [ObservableProperty]
-        private ObservableCollection<Product> productList = [];
+        private ObservableCollection<ProductObservable> productList = [];
 
         [ObservableProperty]
-        private ObservableCollection<Product> shoppingCartList = [];
+        private ObservableCollection<ProductObservable> shoppingCartList = [];
 
         [ObservableProperty]
         private string filter = string.Empty;
@@ -55,42 +60,82 @@ namespace DesktopPurchasingApp.ViewModels
         [RelayCommand]
         private void RemoveItem(object obj)
         {
-            Product product = (Product)obj;
+            ProductObservable product = (ProductObservable)obj;
             ShoppingCartList.Remove(product);
             ProductList.Add(product);
-            product.Pieces = 1;
-
+            product.Amount = 1;
         }
 
         [RelayCommand]
         private void IncreaseCount(object obj)
         {
-            if (((Product)obj).Pieces >= ((Product)obj).PiecesAvailable)
+            if (((ProductObservable)obj).Amount >= ((ProductObservable)obj).Pieces.Count)
             {
                 return;
             }
-            var product = (Product)obj;
-            product.Pieces++;
+            var product = (ProductObservable)obj;
+            product.Amount++;
         }
 
         [RelayCommand]
         private void DecreaseCount(object obj)
         {
-            if (((Product)obj).Pieces <= 1)
+            if (((ProductObservable)obj).Amount <= 1)
             {
                 return;
             }
-            var product = (Product)obj;
-            product.Pieces--;
+            var product = (ProductObservable)obj;
+            product.Amount--;
         }
 
         [RelayCommand]
         private void AddItem(object obj)
         {
-            var product = (Product)obj;
+            var product = (ProductObservable)obj;
             ShoppingCartList.Add(product);
             ProductList.Remove(product);
 
+        }
+
+        [RelayCommand]
+        private async void PlaceOrder(object obj)
+        {
+            //create function constants
+            HttpClient client = new()
+            {
+                BaseAddress = new Uri("http://localhost:5000/")
+            };
+
+            var id = Guid.NewGuid();
+
+            //create order
+            OrderDto order = new()
+            {
+                Id = Guid.NewGuid(),
+                User_ID = user.Id,
+                Products = ShoppingCartList.Select(p => new ProductDto
+                {
+                    ID = p.Id,
+                    Pieces = p.Pieces.Where(x => x.Sold == false).Take(p.Amount).Select(p=> new PieceDto
+                    {
+                        Serial_Number = p.Serial_Number,
+                        ProductId = p.ProductId,
+                    }).ToList(),
+                }).ToList(),
+            };
+
+            var json = JsonConvert.SerializeObject(order);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync("api/Orders", httpContent);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                MessageBox.Show(response.ReasonPhrase);
+                return;
+            }
+
+            //reload products
+            LoadProducts();
         }
 
         private async void LoadProducts()
@@ -109,7 +154,7 @@ namespace DesktopPurchasingApp.ViewModels
                     return;
                 }
 
-                var deserializedProductList = JsonConvert.DeserializeObject<ObservableCollection<Product>>(await response.Content.ReadAsStringAsync());
+                var deserializedProductList = JsonConvert.DeserializeObject<ObservableCollection<ProductObservable>>(await response.Content.ReadAsStringAsync());
 
                 if (deserializedProductList == null)
                 {
@@ -118,8 +163,6 @@ namespace DesktopPurchasingApp.ViewModels
                 }
 
                 ProductList = deserializedProductList;
-
-
             }
             catch (Exception ex)
             {

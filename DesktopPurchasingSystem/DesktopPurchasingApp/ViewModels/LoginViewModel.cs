@@ -3,6 +3,7 @@ using System.Text;
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using DesktopAppAPI.DTO;
 using DesktopPurchasingApp.DTO;
 using DesktopPurchasingApp.Models;
 using Newtonsoft.Json;
@@ -16,9 +17,9 @@ namespace DesktopPurchasingApp.ViewModels
 
         public event Action? NotLoggedIn;
 
-        public UserModel? User { get => user; private set => user = value; }
+        public UserDto? User { get => user; private set => user = value; }
 
-        private UserModel? user;
+        private UserDto? user;
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(LoginCommand))]
@@ -53,7 +54,7 @@ namespace DesktopPurchasingApp.ViewModels
                 //Check response
                 if (response.IsSuccessStatusCode)
                 {
-                    user = JsonConvert.DeserializeObject<UserModel>(response.Content.ReadAsStringAsync().Result);
+                    user = JsonConvert.DeserializeObject<UserDto>(response.Content.ReadAsStringAsync().Result);
                     LoggedIn?.Invoke();
                 }
                 else

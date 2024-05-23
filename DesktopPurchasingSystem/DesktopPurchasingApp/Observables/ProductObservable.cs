@@ -1,11 +1,12 @@
-﻿using System.IO;
+﻿using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace DesktopPurchasingApp.Models
 {
-    public partial class Product : ObservableObject
+    public partial class ProductObservable : ObservableObject
     {
         [ObservableProperty]
         public Guid id;
@@ -20,12 +21,10 @@ namespace DesktopPurchasingApp.Models
         public float price;
 
         [ObservableProperty]
-        public int piecesAvailable;
-
+        public int amount = 1;
+        
         [ObservableProperty]
-        public int pieces = 1;
-
-
+        public ObservableCollection<PieceObservable> pieces = [];
 
         [ObservableProperty]
         public Visibility visibility = Visibility.Visible;

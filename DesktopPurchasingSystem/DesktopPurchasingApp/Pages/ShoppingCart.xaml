@@ -13,15 +13,15 @@
       Title="ShoppingCart">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="200"/>
-        </Grid.ColumnDefinitions>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0">
             <ItemsControl ItemsSource="{Binding ShoppingCartList}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <uc:ItemSC Source="{Binding Image}"  Visibility="{Binding Visibility}" Title="{Binding Name}" Ref="{Binding Id}" Color="Black" Count="{Binding Pieces}" Price="{Binding Price}"/>
+                        <uc:ItemSC Source="{Binding Image}"  Visibility="{Binding Visibility}" Title="{Binding Name}" Ref="{Binding Id}" Color="Black" Count="{Binding Amount}" Price="{Binding Price}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
                 <ItemsControl.ItemsPanel>
@@ -31,9 +31,6 @@
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
         </ScrollViewer>
-        <materialDesign:Card Grid.Column="1" UniformCornerRadius="15" Background="{DynamicResource MaterialDesignPaper}" Margin="10">
-            
-        </materialDesign:Card>
-        
+        <Button Grid.Row="1" Width="200" Content="Place Order" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding PlaceOrderCommand}"/>
     </Grid>
 </Page>

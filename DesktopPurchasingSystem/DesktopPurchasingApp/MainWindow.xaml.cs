@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DesktopAppAPI.DTO;
 using DesktopPurchasingApp.Models;
 using DesktopPurchasingApp.pages;
 using DesktopPurchasingApp.ViewModels;
@@ -20,9 +21,9 @@ namespace DesktopPurchasingApp
     public partial class MainWindow : Window
     {
         private MainViewModel ViewModel => (MainViewModel)DataContext;
-        private readonly UserModel? user;
+        private readonly UserDto? user;
 
-        public MainWindow(UserModel? user)
+        public MainWindow(UserDto? user)
         {
             InitializeComponent();
             DataContext = new MainViewModel(user);

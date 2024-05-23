@@ -1,6 +1,7 @@
 ﻿using System.Windows.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using DesktopAppAPI.DTO;
 using DesktopPurchasingApp.Models;
 using DesktopPurchasingApp.pages;
 using DesktopPurchasingApp.Pages;
@@ -10,14 +11,14 @@ namespace DesktopPurchasingApp.ViewModels
     public partial class MainViewModel : ObservableObject
     {
         [ObservableProperty]
-        public UserModel? user;
+        public UserDto? user;
 
-        public MainViewModel(UserModel? user)
+        public MainViewModel(UserDto? user)
         {
             this.user = user;
 
             //Define shared viewmodel
-            ProductsShoppingcartViewModel productsShoppingcartViewModel = new();
+            ProductsShoppingcartViewModel productsShoppingcartViewModel = new(user);
 
             //Define pages with viewmodels
             activePages[PageType.HomePage] = new Home(user)

@@ -7,13 +7,13 @@ namespace DesktopAppAPI
     {
         public desktopAppDbContext(DbContextOptions<desktopAppDbContext> options) : base(options) { }
 
-        public DbSet<Address> Addresses { get; set; }
-        public DbSet<Department> Departments { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<Piece> Pieces { get; set; }
-        public DbSet<Supplier> Suppliers { get; set; }
-        public DbSet<Seller> Sellers { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<AddressDb> Addresses { get; set; }
+        public DbSet<DepartmentDb> Departments { get; set; }
+        public DbSet<ProductDb> Products { get; set; }
+        public DbSet<OrderDb> Orders { get; set; }
+        public DbSet<PieceDb> Pieces { get; set; }
+        public DbSet<SupplierDb> Suppliers { get; set; }
+        public DbSet<SellerDb> Sellers { get; set; }
+        public DbSet<UserDb> Users { get; set; }
     }
 }

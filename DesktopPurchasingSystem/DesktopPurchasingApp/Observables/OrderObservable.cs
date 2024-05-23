@@ -4,7 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace DesktopPurchasingApp.Models
 {
-    public partial class OrderModel : ObservableObject
+    public partial class OrderObservable : ObservableObject
     {
         [Key]
         [ObservableProperty]
@@ -17,6 +17,6 @@ namespace DesktopPurchasingApp.Models
         public Guid supplier_ID;
 
         [ObservableProperty]
-        public ObservableCollection<Product>? productModels;
+        public ObservableCollection<ProductObservable> products;
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DesktopPurchasingApp.Models
+namespace DesktopAppAPI.Models
 {
-    public class SupplierModel
+    public class SupplierDb
     {
         [Key]
         public Guid ID { get; set; }

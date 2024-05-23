@@ -13,20 +13,20 @@ namespace DesktopAppAPI.Controllers
 
         // GET: api/User
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<UserDb>>> GetUsers()
         {
             return await _db.Users.ToListAsync();
         }
 
         // GET: api/User
         [HttpGet("getPieces")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetPieces()
+        public async Task<ActionResult<IEnumerable<ProductDb>>> GetPieces()
         {
             return await _db.Products.ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(Guid id)
+        public async Task<ActionResult<UserDb>> GetUser(Guid id)
         {
             var user = await _db.Users.FindAsync(id);
 
@@ -39,7 +39,7 @@ namespace DesktopAppAPI.Controllers
         }
 
         [HttpPost("CreateUser")]
-        public async Task<ActionResult<User>> CreateUser(User user)
+        public async Task<ActionResult<UserDb>> CreateUser(UserDb user)
         {
             _db.Users.Add(user);
             await _db.SaveChangesAsync();
@@ -48,7 +48,7 @@ namespace DesktopAppAPI.Controllers
         }
 
         [HttpPost("UpdateUser")]
-        public async Task<ActionResult<User>> UpdateUser(User user)
+        public async Task<ActionResult<UserDb>> UpdateUser(UserDb user)
         {
             _db.Users.Update(user);
             await _db.SaveChangesAsync();
@@ -56,7 +56,7 @@ namespace DesktopAppAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<User>> DeleteUser(Guid id)
+        public async Task<ActionResult<UserDb>> DeleteUser(Guid id)
         {
             var user = await _db.Users.FindAsync(id);
             if (user == null)

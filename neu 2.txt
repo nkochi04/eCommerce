@@ -1,0 +1,24 @@
+{
+"Id":"a60642c0-5c7a-4695-80f0-0eab2498f594",
+"User_ID":"4ba3465b-a87b-4074-b857-9075c57f3c75",
+"Supplier_ID":"00000000-0000-0000-0000-000000000000",
+"Products":
+	[
+	{
+	"ID":"01a2fbf4-0e75-4301-a8e0-77791b74ecaa",
+	"Seller_Id":"00000000-0000-0000-0000-000000000000",
+	"Name":"",
+	"Price":0.0,
+	"ImageData":null,
+	"Pieces":
+		[
+		{
+		"Serial_Number":257756196,
+		"Sold":false,"OrderId":null,
+		"ProductId":"01a2fbf4-0e75-4301-a8e0-77791b74ecaa"
+		"OrderId": null
+		}
+		]
+	}
+	]
+}

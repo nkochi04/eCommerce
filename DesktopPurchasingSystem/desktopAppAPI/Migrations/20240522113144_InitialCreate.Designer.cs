@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DesktopAppAPI.Migrations
 {
     [DbContext(typeof(desktopAppDbContext))]
-    [Migration("20240512165911_InitialCreate")]
+    [Migration("20240522113144_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace DesktopAppAPI.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
 
-            modelBuilder.Entity("DesktopAppAPI.Models.Address", b =>
+            modelBuilder.Entity("DesktopAppAPI.Models.AddressDb", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
@@ -46,7 +46,7 @@ namespace DesktopAppAPI.Migrations
                     b.ToTable("Addresses");
                 });
 
-            modelBuilder.Entity("DesktopAppAPI.Models.Department", b =>
+            modelBuilder.Entity("DesktopAppAPI.Models.DepartmentDb", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
@@ -65,7 +65,7 @@ namespace DesktopAppAPI.Migrations
                     b.ToTable("Departments");
                 });
 
-            modelBuilder.Entity("DesktopAppAPI.Models.Order", b =>
+            modelBuilder.Entity("DesktopAppAPI.Models.OrderDb", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
@@ -82,7 +82,7 @@ namespace DesktopAppAPI.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("DesktopAppAPI.Models.Piece", b =>
+            modelBuilder.Entity("DesktopAppAPI.Models.PieceDb", b =>
                 {
                     b.Property<int>("Serial_Number")
                         .ValueGeneratedOnAdd()
@@ -99,14 +99,10 @@ namespace DesktopAppAPI.Migrations
 
                     b.HasKey("Serial_Number");
 
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
                     b.ToTable("Pieces");
                 });
 
-            modelBuilder.Entity("DesktopAppAPI.Models.Product", b =>
+            modelBuilder.Entity("DesktopAppAPI.Models.ProductDb", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
@@ -130,7 +126,7 @@ namespace DesktopAppAPI.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("DesktopAppAPI.Models.Seller", b =>
+            modelBuilder.Entity("DesktopAppAPI.Models.SellerDb", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
@@ -149,12 +145,10 @@ namespace DesktopAppAPI.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("AddressId");
-
                     b.ToTable("Sellers");
                 });
 
-            modelBuilder.Entity("DesktopAppAPI.Models.Supplier", b =>
+            modelBuilder.Entity("DesktopAppAPI.Models.SupplierDb", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
@@ -175,7 +169,7 @@ namespace DesktopAppAPI.Migrations
                     b.ToTable("Suppliers");
                 });
 
-            modelBuilder.Entity("DesktopAppAPI.Models.User", b =>
+            modelBuilder.Entity("DesktopAppAPI.Models.UserDb", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
@@ -202,68 +196,7 @@ namespace DesktopAppAPI.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("DepartmentId");
-
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("DesktopAppAPI.Models.Piece", b =>
-                {
-                    b.HasOne("DesktopAppAPI.Models.Order", "Order")
-                        .WithMany("Pieces")
-                        .HasForeignKey("OrderId");
-
-                    b.HasOne("DesktopAppAPI.Models.Product", "Product")
-                        .WithMany("Pieces")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("DesktopAppAPI.Models.Seller", b =>
-                {
-                    b.HasOne("DesktopAppAPI.Models.Address", "Address")
-                        .WithMany("Sellers")
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Address");
-                });
-
-            modelBuilder.Entity("DesktopAppAPI.Models.User", b =>
-                {
-                    b.HasOne("DesktopAppAPI.Models.Department", "Department")
-                        .WithMany("Users")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Department");
-                });
-
-            modelBuilder.Entity("DesktopAppAPI.Models.Address", b =>
-                {
-                    b.Navigation("Sellers");
-                });
-
-            modelBuilder.Entity("DesktopAppAPI.Models.Department", b =>
-                {
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("DesktopAppAPI.Models.Order", b =>
-                {
-                    b.Navigation("Pieces");
-                });
-
-            modelBuilder.Entity("DesktopAppAPI.Models.Product", b =>
-                {
-                    b.Navigation("Pieces");
                 });
 #pragma warning restore 612, 618
         }

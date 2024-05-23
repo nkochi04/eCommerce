@@ -22,7 +22,7 @@
             <ItemsControl ItemsSource="{Binding ProductList}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <uc:Item Source="{Binding Image}"  Visibility="{Binding Visibility}" Title="{Binding Name}" Ref="{Binding Id}" Color="Black" Count="{Binding Pieces}" Price="{Binding Price}"/>
+                        <uc:Item Source="{Binding Image}"  Visibility="{Binding Visibility}" Title="{Binding Name}" Ref="{Binding Id}" Color="Black" Count="{Binding Amount}" Price="{Binding Price}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
                 <ItemsControl.ItemsPanel>

@@ -17,7 +17,7 @@ namespace DesktopPurchasingApp.ViewModels
         
 
         [ObservableProperty]
-        public ObservableCollection<OrderModel> orderList= [];
+        public ObservableCollection<OrderObservable> orderList= [];
 
         private async void LoadOrders()
         {
@@ -35,7 +35,7 @@ namespace DesktopPurchasingApp.ViewModels
                     return;
                 }
 
-                var deserializedProductList = JsonConvert.DeserializeObject<ObservableCollection<OrderModel>>(await response.Content.ReadAsStringAsync());
+                var deserializedProductList = JsonConvert.DeserializeObject<ObservableCollection<OrderObservable>>(await response.Content.ReadAsStringAsync());
 
                 if (deserializedProductList == null)
                 {

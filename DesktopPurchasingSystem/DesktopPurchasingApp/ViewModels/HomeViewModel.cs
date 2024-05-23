@@ -2,19 +2,20 @@
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using DesktopAppAPI.DTO;
 using DesktopPurchasingApp.Models;
 
 namespace DesktopPurchasingApp.ViewModels
 {
     public partial class HomeViewModel : ObservableObject
     {
-        public HomeViewModel(UserModel? user)
+        public HomeViewModel(UserDto? user)
         {
             User = user;
         }
 
         [ObservableProperty]
-        private UserModel? user;
+        private UserDto? user;
 
         [RelayCommand]
         private static void Email()

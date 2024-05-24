@@ -15,15 +15,15 @@ namespace DesktopPurchasingApp.ViewModels
 
         public MainViewModel(UserDto? user)
         {
-            this.user = user;
+            this.User = user;
 
             //Define shared viewmodel
-            ProductsShoppingcartViewModel productsShoppingcartViewModel = new(user);
+            ProductsShoppingcartViewModel productsShoppingcartViewModel = new(User);
 
             //Define pages with viewmodels
-            activePages[PageType.HomePage] = new Home(user)
+            activePages[PageType.HomePage] = new Home(User)
             {
-                DataContext = new HomeViewModel(user)
+                DataContext = new HomeViewModel(User)
             };
             activePages[PageType.Products] = new Products()
             {
@@ -35,7 +35,7 @@ namespace DesktopPurchasingApp.ViewModels
             };
             activePages[PageType.Orders] = new Orders()
             {
-                DataContext = new OrderViewModel()
+                DataContext = new OrderViewModel(User)
             };
         }
 

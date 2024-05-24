@@ -78,7 +78,7 @@ namespace DesktopAppAPI.Controllers
                 var pieceDb = _db.Pieces.Where(x => x.Serial_Number == piece.Serial_Number).SingleOrDefault();
                 if (pieceDb == null)
                 {
-                    return NotFound("piece not found");
+                    return NotFound("no pieces available");
                 }
                 pieceDb.Sold = true;
                 pieceDb.OrderId = orderDto.Id;

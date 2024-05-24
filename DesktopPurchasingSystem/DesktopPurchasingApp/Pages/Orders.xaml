@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:uc="clr-namespace:DesktopPurchasingApp.UserControls"
       xmlns:local="clr-namespace:DesktopPurchasingApp.Pages"
       xmlns:vm="clr-namespace:DesktopPurchasingApp.ViewModels"
       d:DataContext="{d:DesignInstance Type=vm:OrderViewModel}"
@@ -12,6 +13,56 @@
       Title="Orders">
 
     <Grid>
-        <TextBlock Text="OIrders" Width="100" Height="100"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0">
+            <ItemsControl ItemsSource="{Binding OrderList}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <materialDesign:Card Width="800" MinHeight="100" MaxHeight="200" Margin="10" UniformCornerRadius="20">
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" Grid.Row="0" Text="Order ID:" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Id}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center"/>
+                                <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.ColumnSpan="2">
+                                    <ItemsControl ItemsSource="{Binding Products}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <materialDesign:Card Margin="20">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <TextBlock Grid.Column="0" Text="{Binding Pieces.Count}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center" Margin="20,0,0,0"/>
+                                                        <TextBlock Grid.Column="1" Text="{Binding Name}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center"/>
+                                                    </Grid>
+                                                </materialDesign:Card>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Vertical"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                    </ItemsControl>
+                                </ScrollViewer>
+                            </Grid>
+                        </materialDesign:Card>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </Page>

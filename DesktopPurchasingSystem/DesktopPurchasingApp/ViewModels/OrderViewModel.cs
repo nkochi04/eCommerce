@@ -2,15 +2,18 @@
 using System.Net.Http;
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
+using DesktopAppAPI.DTO;
 using DesktopPurchasingApp.Models;
 using Newtonsoft.Json;
 
 namespace DesktopPurchasingApp.ViewModels
 {
     public partial class OrderViewModel : ObservableObject
-    {
-        public OrderViewModel() 
+    { 
+        private UserDto? user;
+        public OrderViewModel(UserDto user) 
         {
+            this.user = user;
             LoadOrders();
         }
 
@@ -19,7 +22,7 @@ namespace DesktopPurchasingApp.ViewModels
         [ObservableProperty]
         public ObservableCollection<OrderObservable> orderList= [];
 
-        private async void LoadOrders()
+        public async void LoadOrders()
         {
             try
             {
@@ -27,7 +30,7 @@ namespace DesktopPurchasingApp.ViewModels
                 {
                     BaseAddress = new Uri("http://localhost:5000/")
                 };
-                var response = await client.GetAsync("api/Products");
+                var response = await client.GetAsync($"api/Orders/{user.Id}");
 
                 if (!response.IsSuccessStatusCode)
                 {

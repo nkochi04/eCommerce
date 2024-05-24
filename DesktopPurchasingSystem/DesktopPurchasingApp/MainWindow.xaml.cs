@@ -1,17 +1,8 @@
-﻿using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using DesktopAppAPI.DTO;
-using DesktopPurchasingApp.Models;
-using DesktopPurchasingApp.pages;
+﻿using DesktopAppAPI.DTO;
+using DesktopPurchasingApp.Pages;
 using DesktopPurchasingApp.ViewModels;
+using System.Windows;
+using System.Windows.Input;
 
 namespace DesktopPurchasingApp
 {
@@ -52,6 +43,7 @@ namespace DesktopPurchasingApp
 
         private void OrdersSelected()
         {
+            ((Orders)ViewModel.activePages[MainViewModel.PageType.Orders]).ViewModel.LoadOrders();
             navframe.Navigate(ViewModel.activePages[MainViewModel.PageType.Orders]);
         }
 

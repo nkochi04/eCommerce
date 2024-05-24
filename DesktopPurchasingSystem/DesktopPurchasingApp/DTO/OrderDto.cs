@@ -8,6 +8,6 @@
 
         public Guid Supplier_ID { get; set; }
 
-        public required List<ProductDto> Products { get; set; }
+        public List<ProductDto> Products { get; set; }
     }
 }

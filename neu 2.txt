@@ -15,7 +15,7 @@
 		{
 		"Serial_Number":257756196,
 		"Sold":false,"OrderId":null,
-		"ProductId":"01a2fbf4-0e75-4301-a8e0-77791b74ecaa"
+		"ProductId":"01a2fbf4-0e75-4301-a8e0-77791b74ecaa",
 		"OrderId": null
 		}
 		]

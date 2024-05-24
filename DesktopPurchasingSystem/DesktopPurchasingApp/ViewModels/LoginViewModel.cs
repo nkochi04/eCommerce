@@ -49,7 +49,7 @@ namespace DesktopPurchasingApp.ViewModels
                 };
                 var json = JsonConvert.SerializeObject(loginModel);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await client.PostAsync("api/Authenticate", content);
+                var response = await client.PostAsync("api/Sessions", content);
 
                 //Check response
                 if (response.IsSuccessStatusCode)

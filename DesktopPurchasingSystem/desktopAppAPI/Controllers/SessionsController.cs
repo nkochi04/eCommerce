@@ -7,11 +7,11 @@ namespace DesktopAppAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthenticateController : ControllerBase
+    public class SessionsController : ControllerBase
     {
         private readonly desktopAppDbContext _db;
 
-        public AuthenticateController(desktopAppDbContext context)
+        public SessionsController(desktopAppDbContext context)
         {
             _db = context;
         }

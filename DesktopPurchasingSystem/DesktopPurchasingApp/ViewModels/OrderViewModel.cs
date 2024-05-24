@@ -22,6 +22,7 @@ namespace DesktopPurchasingApp.ViewModels
         [ObservableProperty]
         public ObservableCollection<OrderObservable> orderList= [];
 
+        //Load the orders of the user
         public async void LoadOrders()
         {
             try

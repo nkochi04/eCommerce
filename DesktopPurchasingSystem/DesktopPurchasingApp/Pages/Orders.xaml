@@ -17,7 +17,7 @@
             <ItemsControl ItemsSource="{Binding OrderList}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <materialDesign:Card Width="800" MinHeight="100" MaxHeight="200" Margin="10" UniformCornerRadius="20">
+                        <materialDesign:Card Width="800" MinHeight="100" Margin="10" UniformCornerRadius="20">
                             <Grid Margin="10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -36,12 +36,13 @@
                                                 <materialDesign:Card Margin="20">
                                                     <Grid>
                                                         <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
                                                             <ColumnDefinition Width="*"/>
                                                         </Grid.ColumnDefinitions>
-
                                                         <TextBlock Grid.Column="0" Text="{Binding Pieces.Count}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center" Margin="20,0,0,0"/>
                                                         <TextBlock Grid.Column="1" Text="{Binding Name}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center"/>
+                                                        <TextBlock Grid.Column="2" Text="{Binding PriceString}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center"/>
                                                     </Grid>
                                                 </materialDesign:Card>
                                             </DataTemplate>

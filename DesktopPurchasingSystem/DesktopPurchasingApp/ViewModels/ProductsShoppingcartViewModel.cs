@@ -1,15 +1,12 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.IO;
-using System.Net.Http;
-using System.Text;
-using System.Windows;
-using System.Windows.Media.Imaging;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DesktopAppAPI.DTO;
 using DesktopPurchasingApp.Models;
 using Newtonsoft.Json;
+using System.Collections.ObjectModel;
+using System.Net.Http;
+using System.Text;
+using System.Windows;
 
 namespace DesktopPurchasingApp.ViewModels
 {
@@ -69,7 +66,7 @@ namespace DesktopPurchasingApp.ViewModels
         [RelayCommand]
         private void IncreaseCount(object obj)
         {
-            if (((ProductObservable)obj).Amount >= ((ProductObservable)obj).Pieces.Count)
+            if (((ProductObservable)obj).Amount >= ((ProductObservable)obj).PiecesAvailable)
             {
                 return;
             }
@@ -116,7 +113,7 @@ namespace DesktopPurchasingApp.ViewModels
                 Products = ShoppingCartList.Select(p => new ProductDto
                 {
                     ID = p.Id,
-                    Pieces = p.Pieces.Where(x => x.Sold == false).Take(p.Amount).Select(p=> new PieceDto
+                    Pieces = p.Pieces.Where(x => x.Sold == false).Take(p.Amount).Select(p => new PieceDto
                     {
                         Serial_Number = p.Serial_Number,
                         ProductId = p.ProductId,

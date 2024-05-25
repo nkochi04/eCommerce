@@ -22,16 +22,28 @@ namespace DesktopPurchasingApp.Models
 
         [ObservableProperty]
         public int amount = 1;
-  
-        public string PriceString => $"${Price * Pieces.Count}";
+
+        public string PriceString => $"${(decimal)Price * Pieces.Count}";
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(PiecesAvailable))]
         public ObservableCollection<PieceObservable> pieces = [];
 
-        public int PiecesAvailable => pieces.Where(x=> x.sold == false).Count();
+        public int PiecesAvailable
+        {
+            get
+            {
+                var count = pieces.Where(x => x.sold == false).Count();
+                if (count == 0)
+                {
+                    Visibility = Visibility.Collapsed;
+                }
+                return count;
+            }
+        }
 
         [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(PiecesAvailable))]
         public Visibility visibility = Visibility.Visible;
 
         public byte[]? ImageData { get; set; }

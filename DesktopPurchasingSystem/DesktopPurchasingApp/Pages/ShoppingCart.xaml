@@ -31,6 +31,7 @@
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
         </ScrollViewer>
-        <Button Grid.Row="1" Width="200" Content="Place Order" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding PlaceOrderCommand}"/>
+        <Button Margin="10"  Grid.Row="1" Width="200" Content="Place Order" VerticalAlignment="Center" HorizontalAlignment="Right" Command="{Binding PlaceOrderCommand}"/>
+        <TextBlock Margin="10" Grid.Row="1" Width="200" Text="{Binding TotalPriceOfCartString}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </Grid>
 </Page>

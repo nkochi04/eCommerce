@@ -53,6 +53,14 @@ namespace DesktopPurchasingApp.UserControls
 
         public static readonly DependencyProperty RefProperty = DependencyProperty.Register("Ref", typeof(string), typeof(Item));
 
+        public string Seller
+        {
+            get { return (string)GetValue(SellerProperty); }
+            set { SetValue(SellerProperty, value); }
+        }
+
+        public static readonly DependencyProperty SellerProperty = DependencyProperty.Register("Ref", typeof(string), typeof(Item));
+
 
         public string Color
         {

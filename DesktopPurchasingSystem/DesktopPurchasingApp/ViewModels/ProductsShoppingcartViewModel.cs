@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using DesktopAppAPI.DTO;
 using DesktopPurchasingApp.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Text;
@@ -29,20 +30,38 @@ namespace DesktopPurchasingApp.ViewModels
         [ObservableProperty]
         private string filter = string.Empty;
 
+        partial void OnProductListChanged(ObservableCollection<ProductObservable> value)
+        {
+            foreach (var item in value)
+            {
+                var x = item.PiecesAvailable;
+            }
+        }
+
+        [ObservableProperty]
+        private string totalPriceOfCartString = $"Total price: {0} €";
+
         partial void OnFilterChanged(string? oldValue, string newValue)
         {
             if (newValue == "")
             {
                 foreach (var item in ProductList)
                 {
-                    item.Visibility = Visibility.Visible;
+                    if (item.PiecesAvailable == 0)
+                    {
+                        item.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        item.Visibility = Visibility.Visible;
+                    }
                 }
             }
             else
             {
                 foreach (var item in ProductList)
                 {
-                    if (!item.Name.Contains((newValue), StringComparison.CurrentCultureIgnoreCase))
+                    if (!item.Name.Contains((newValue), StringComparison.CurrentCultureIgnoreCase) || item.PiecesAvailable == 0)
                     {
                         item.Visibility = Visibility.Collapsed;
                     }
@@ -61,6 +80,7 @@ namespace DesktopPurchasingApp.ViewModels
             ShoppingCartList.Remove(product);
             ProductList.Add(product);
             product.Amount = 1;
+            TotalPriceOfCartString = $"Total price: {(decimal)ShoppingCartList.Sum(x => x.Price * x.Amount)} €";
         }
 
         [RelayCommand]
@@ -72,6 +92,7 @@ namespace DesktopPurchasingApp.ViewModels
             }
             var product = (ProductObservable)obj;
             product.Amount++;
+            TotalPriceOfCartString = $"Total price: {(decimal)ShoppingCartList.Sum(x => x.Price * x.Amount)} €";
         }
 
         [RelayCommand]
@@ -83,6 +104,7 @@ namespace DesktopPurchasingApp.ViewModels
             }
             var product = (ProductObservable)obj;
             product.Amount--;
+            TotalPriceOfCartString = $"Total price: {(decimal)ShoppingCartList.Sum(x => x.Price * x.Amount)} €";
         }
 
         [RelayCommand]
@@ -91,6 +113,7 @@ namespace DesktopPurchasingApp.ViewModels
             var product = (ProductObservable)obj;
             ShoppingCartList.Add(product);
             ProductList.Remove(product);
+            TotalPriceOfCartString = $"Total price: {(decimal)ShoppingCartList.Sum(x => x.Price * x.Amount)} €";
 
         }
 

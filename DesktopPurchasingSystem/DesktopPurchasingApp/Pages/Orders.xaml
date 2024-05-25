@@ -22,6 +22,7 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -29,7 +30,8 @@
                                 </Grid.RowDefinitions>
                                 <TextBlock Grid.Column="0" Grid.Row="0" Text="Order ID:" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center"/>
                                 <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Id}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center"/>
-                                <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.ColumnSpan="2">
+                                <TextBlock Grid.Column="2" Grid.Row="0" Text="{Binding TotalPriceOfOrderString}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center"/>
+                                <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.ColumnSpan="3">
                                     <ItemsControl ItemsSource="{Binding Products}">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>

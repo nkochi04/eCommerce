@@ -18,5 +18,8 @@ namespace DesktopPurchasingApp.Models
 
         [ObservableProperty]
         public ObservableCollection<ProductObservable> products;
+
+        [ObservableProperty]
+        public string totalPriceOfOrderString = $"Total price: {0} €";
     }
 }

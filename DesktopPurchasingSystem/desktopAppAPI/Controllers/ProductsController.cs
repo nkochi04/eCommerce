@@ -24,7 +24,15 @@ namespace DesktopAppAPI.Controllers
                     Name = p.Name,
                     Price = p.Price,
                     ImageData = p.ImageData,
-                    Seller_Id = p.Seller_ID
+                    Seller = _db.Sellers
+                        .Where(s => s.ID == p.Seller_ID)
+                        .Select(s => new SellerDto
+                                               {
+                            ID = s.ID,
+                            Name = s.Name,
+                            Email = s.Email,
+                            AddressId = s.AddressId,
+                        }).FirstOrDefault()
                 })];
 
             PieceDto[] pieces = [.. _db.Pieces

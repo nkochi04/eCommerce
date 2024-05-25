@@ -8,7 +8,7 @@ namespace DesktopAppAPI
         //Initializing the database 
         public static void Initialize(desktopAppDbContext _db)
         {
-            if (true)
+            if (false)
             {
                 return;
             }

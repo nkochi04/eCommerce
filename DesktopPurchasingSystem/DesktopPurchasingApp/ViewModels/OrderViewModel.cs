@@ -22,6 +22,8 @@ namespace DesktopPurchasingApp.ViewModels
         [ObservableProperty]
         public ObservableCollection<OrderObservable> orderList= [];
 
+        
+
         //Load the orders of the user
         public async void LoadOrders()
         {
@@ -52,6 +54,10 @@ namespace DesktopPurchasingApp.ViewModels
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            foreach (var order in OrderList)
+            {
+                order.TotalPriceOfOrderString = $"Total price: {(decimal)order.Products.Sum(x => x.Price * x.pieces.Count)} €";
             }
         }
     }

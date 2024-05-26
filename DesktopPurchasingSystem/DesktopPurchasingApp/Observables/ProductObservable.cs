@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using CommunityToolkit.Mvvm.ComponentModel;
+using DesktopPurchasingApp.Observables;
 
 namespace DesktopPurchasingApp.Models
 {
@@ -12,7 +13,7 @@ namespace DesktopPurchasingApp.Models
         public Guid id;
 
         [ObservableProperty]
-        public Guid seller_ID;
+        public SellerObservable seller;
 
         [ObservableProperty]
         public string name = string.Empty;

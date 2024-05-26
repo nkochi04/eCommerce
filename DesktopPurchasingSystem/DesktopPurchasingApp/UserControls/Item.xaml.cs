@@ -59,7 +59,7 @@ namespace DesktopPurchasingApp.UserControls
             set { SetValue(SellerProperty, value); }
         }
 
-        public static readonly DependencyProperty SellerProperty = DependencyProperty.Register("Ref", typeof(string), typeof(Item));
+        public static readonly DependencyProperty SellerProperty = DependencyProperty.Register("Seller", typeof(string), typeof(Item));
 
 
         public string Color

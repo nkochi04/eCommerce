@@ -47,12 +47,20 @@ namespace DesktopAppAPI.Controllers
 
                 foreach (var productId in productsIds)
                 {
-                    var product = _db.Products.Where(x => x.ID == productId).Select(x => new ProductDto()
+                    var product = _db.Products.Where(x => x.ID == productId).Select(p => new ProductDto()
                     {
-                        Id = x.ID,
-                        Name = x.Name,
-                        Price = x.Price,
-                        Seller_Id = x.Seller_ID,
+                        Id = p.ID,
+                        Name = p.Name,
+                        Price = p.Price,
+                        Seller = _db.Sellers
+                        .Where(s => s.ID == p.Seller_ID)
+                        .Select(s => new SellerDto
+                        {
+                            ID = s.ID,
+                            Name = s.Name,
+                            Email = s.Email,
+                            AddressId = s.AddressId,
+                        }).FirstOrDefault()
                     }).FirstOrDefault();
 
                     if (product != null)

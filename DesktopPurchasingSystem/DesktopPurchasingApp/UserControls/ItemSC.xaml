@@ -30,6 +30,8 @@
             <TextBlock Grid.Column="1" Text="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center"/>
 
             <TextBlock Grid.Column="1" Text="{Binding Path=Ref, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}" Foreground="#909090" FontSize="11" VerticalAlignment="Center" Margin="0,55,0,0"/>
+            
+            <TextBlock Grid.Column="2" Text="{Binding Path=Seller, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}" Foreground="#909090" FontSize="11" VerticalAlignment="Center" Margin="0,55,0,0"/>
 
             <TextBlock Grid.Column="3" Text="{Binding Path=Count, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
 

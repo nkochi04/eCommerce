@@ -21,7 +21,7 @@
             <ItemsControl ItemsSource="{Binding ShoppingCartList}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <uc:ItemSC Source="{Binding Image}" Seller="{Binding Seller.Name}"  Visibility="{Binding Visibility}" Title="{Binding Name}" Ref="{Binding Id}" Color="Black" Count="{Binding Amount}" Price="{Binding Price}"/>
+                        <uc:ItemSC Source="{Binding Image}" Seller="{Binding Seller.Name}"  Visibility="{Binding Visibility}" Title="{Binding Name}" Ref="{Binding Id}" Color="Black" Count="{Binding Amount}" Price="{Binding PriceStringSC}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
                 <ItemsControl.ItemsPanel>

@@ -9,6 +9,8 @@ namespace DesktopPurchasingApp.Models
 {
     public partial class ProductObservable : ObservableObject
     {
+        //TODO: init PriceStringOrders
+
         [ObservableProperty]
         public Guid id;
 
@@ -19,12 +21,20 @@ namespace DesktopPurchasingApp.Models
         public string name = string.Empty;
 
         [ObservableProperty]
-        public float price;
+        public float price; 
 
         [ObservableProperty]
         public int amount = 1;
 
-        public string PriceString => $"${(decimal)Price * Pieces.Count}";
+        partial void OnAmountChanged(int value)
+        {
+            PriceStringSC = $"${(decimal)Price * value}";
+        }
+
+        [ObservableProperty]
+        public string priceStringSC;
+
+        public string PriceStringOrders => $"${(decimal)Price * Pieces.Count}";
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(PiecesAvailable))]

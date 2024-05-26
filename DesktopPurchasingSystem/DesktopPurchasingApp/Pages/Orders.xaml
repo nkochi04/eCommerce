@@ -44,7 +44,7 @@
                                                         </Grid.ColumnDefinitions>
                                                         <TextBlock Grid.Column="0" Text="{Binding Pieces.Count}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center" Margin="20,0,0,0"/>
                                                         <TextBlock Grid.Column="1" Text="{Binding Name}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center"/>
-                                                        <TextBlock Grid.Column="2" Text="{Binding PriceString}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center"/>
+                                                        <TextBlock Grid.Column="2" Text="{Binding PriceStringOrders}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center"/>
                                                     </Grid>
                                                 </materialDesign:Card>
                                             </DataTemplate>

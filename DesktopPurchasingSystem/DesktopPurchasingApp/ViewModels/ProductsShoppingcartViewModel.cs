@@ -183,6 +183,12 @@ namespace DesktopPurchasingApp.ViewModels
                 }
 
                 ProductList = deserializedProductList;
+                foreach (var product in ProductList)
+                {
+                    var temp = product.Price;
+                    product.Price = 0f;
+                    product.Price = temp;
+                }
             }
             catch (Exception ex)
             {

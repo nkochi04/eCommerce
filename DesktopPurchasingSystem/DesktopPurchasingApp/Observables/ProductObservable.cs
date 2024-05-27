@@ -9,6 +9,11 @@ namespace DesktopPurchasingApp.Models
 {
     public partial class ProductObservable : ObservableObject
     {
+        public ProductObservable()
+        {
+
+        }
+
         //TODO: init PriceStringOrders
 
         [ObservableProperty]
@@ -21,7 +26,12 @@ namespace DesktopPurchasingApp.Models
         public string name = string.Empty;
 
         [ObservableProperty]
-        public float price; 
+        public float price;
+
+        partial void OnPriceChanged(float value)
+        {
+            PriceStringSC = $"${(decimal)Price * Amount}";
+        }
 
         [ObservableProperty]
         public int amount = 1;

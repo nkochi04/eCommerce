@@ -40,9 +40,15 @@
             </StackPanel>
             <Frame Grid.Row="1" Grid.Column="1" x:Name="navframe" NavigationUIVisibility="Hidden"/>
 
-            <StackPanel Height="80" Width="150" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+            <StackPanel Height="160" Width="150" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                 <materialDesign:Card Height="30" Width="130" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10">
                     <TextBlock Text="{Binding User.Username}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </materialDesign:Card >
+                <materialDesign:Card Height="30" Width="130" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,5,10,2">
+                    <TextBlock Text="{Binding User.Department.Name}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </materialDesign:Card >
+                <materialDesign:Card Height="30" Width="130" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,2,10,5">
+                    <TextBlock Text="{Binding User.Department.Payment_Adress}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </materialDesign:Card >
                 <Button Height="30" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="Logout">
                     <materialDesign:PackIcon Kind="Logout" Height="20" Width="20"/>

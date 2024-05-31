@@ -6,13 +6,13 @@ namespace DesktopAppAPI
     public class SeedData
     {
         //Initializing the database 
-        public static void Initialize(desktopAppDbContext _db)
+        public static void Initialize(desktopAppDbContext _db, IConfiguration config)
         {
-            if (false)
+            var x = config["DatabaseReset"];
+            if (x == "false")
             {
                 return;
             }
-
 
             //empties all tables
             ClearAllTables(_db);

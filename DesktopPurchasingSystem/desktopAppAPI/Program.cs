@@ -21,7 +21,7 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<desktopAppDbContext>();
-    SeedData.Initialize(dbContext);
+    SeedData.Initialize(dbContext, configuration);
 }
 
 // Configure the HTTP request pipeline.
